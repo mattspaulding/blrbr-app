@@ -35,22 +35,17 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
 
-        var ref = window.open('http://blrbr.co', '_blank', 'location=yes');
+        var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'location=no');
 
-        ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
-        ref.addEventListener('loadstop', function(event) { 
-        alert('stop: ' + event.url); 
-        alert(event.url.indexOf("blrbr.co") != -1);
-        	if(event.url.indexOf("blrbr.co") != -1)
+        //ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
+        ref.addEventListener('loadstart', function(event) { 
+        //alert('stop: ' + event.url); 
+        //alert(event.url.indexOf("blrbr.co") != -1);
+        	if(event.url.indexOf("blrb/create") != -1)
         	{
         		alert('at blrbr');
         	}
-        	
-        	else
-        	{
-        		alert('not blrbr');
-        	}
-        	}
+         	}
         	);
         ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
         ref.addEventListener('exit', function(event) { alert(event.type); });
