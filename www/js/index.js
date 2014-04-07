@@ -40,7 +40,7 @@ var app = {
         ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
         ref.addEventListener('loadstop', function(event) { 
         alert('stop: ' + event.url); 
-        alert(s.indexOf("oo") != -1);
+        alert(event.url.indexOf("blrbr.co") != -1);
         	if(event.url.indexOf("blrbr.co") != -1)
         	{
         		alert('at blrbr');
