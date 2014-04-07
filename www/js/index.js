@@ -38,7 +38,19 @@ var app = {
         var ref = window.open('http://apache.org', '_blank', 'location=yes');
 
         ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
-        ref.addEventListener('loadstop', stopFunc );
+        ref.addEventListener('loadstop', function(event) { 
+        alert('stop: ' + event); 
+        	if(event.url.Contains('http://blrbr.co'))
+        	{
+        		alert('at blrbr');
+        	}
+        	
+        	else
+        	{
+        		alert('not blrbr');
+        	}
+        	}
+        	);
         ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
         ref.addEventListener('exit', function(event) { alert(event.type); });
     },
@@ -52,10 +64,7 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-    },
-    
-    stopFunc: function(event)
-    {
-    	alert('error: ' + event);
     }
+    
+   
 };
