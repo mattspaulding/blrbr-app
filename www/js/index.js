@@ -41,7 +41,7 @@ var app = {
         ref.addEventListener('loadstart', function(event) { 
         //alert('stop: ' + event.url); 
         //alert(event.url.indexOf("blrbr.co") != -1);
-        	if(event.url.indexOf('blrb/create') != -1)
+        	if(event.url.indexOf('blrb\/create') != -1)
         	{
         		alert('at blrbr');
         	}
