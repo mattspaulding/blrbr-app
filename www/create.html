@@ -81,11 +81,9 @@
                 }, onError); //of requestFileSystem
             } else //it's Android
             {
-                mediaVar = new Media(recordFileName, function(mediaFile){
-                	alert('path: '+mediaFile.fullPath);
-                	alert('name: '+mediaFile.name);
+                mediaVar = new Media(recordFileName, function(){
                     alert("Media created successfully: "+recordFileName);
-                              uploadVoice(mediaFile);
+                              uploadVoice();
 
                 }, onError, mediaStatusCallback); 
                 onMediaCreated();
@@ -164,10 +162,9 @@
 
         }
         
-       function uploadVoice(mediaFile) {
+       function uploadVoice() {
        	debugger;
-       	alert('path: '+mediaFile.fullPath);
-       	var imageURI="mnt/sdcard/recording.wav";
+       	var imageURI="/storage/emulated/0/recording.wav";
             var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
@@ -180,7 +177,7 @@
             options.params = params;
 
             var ft = new FileTransfer();
-            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/Upload", win, fail);
+            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/Upload", win, fail,options);
         }
 
         function win(r) {
