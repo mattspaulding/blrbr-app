@@ -19,7 +19,7 @@
     <preference name="phonegap-version" value="3.3.0" /> 
 
     <gap:plugin name="org.apache.cordova.core.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.media-capture" />
+    <gap:plugin name="org.apache.cordova.media" />
     
     
         <preference name="orientation"                value="portrait" />        <!-- all: default means both landscape and portrait are enabled -->
