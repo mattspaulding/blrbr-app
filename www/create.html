@@ -82,6 +82,8 @@
                     alert("Media created successfully");
                 }, onError, mediaStatusCallback); 
                 onMediaCreated();
+                      uploadFile(mediaVar);
+              
             }
         }
 
@@ -156,13 +158,10 @@
 
         }
         
-        function onMediaCreated()
-        {
-        	alert('onMediaCreated');
-        }
+      
 
  // Upload files to server
-    function uploadFile(mediaVar) {
+    function uploadFile(mediaFile) {
     	alert('uploadFile');
         var ft = new FileTransfer(),
             path = mediaFile.fullPath,
