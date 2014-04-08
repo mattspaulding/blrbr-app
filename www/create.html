@@ -13,7 +13,7 @@
 
         var deviceready = false;
         var mediaVar = null;
-        var recordFileName = "blrbr/recording.wav";
+        var recordFileName = "recording.wav";
         var status = null;
         var isIOS = false;
 
@@ -80,9 +80,10 @@
             {
                 mediaVar = new Media(recordFileName, function(){
                     alert("Media created successfully");
+                               uploadFile(mediaVar);
+           
                 }, onError, mediaStatusCallback); 
                 onMediaCreated();
-                      uploadFile(mediaVar);
               
             }
         }
@@ -162,7 +163,7 @@
 
  // Upload files to server
     function uploadFile(mediaFile) {
-    	alert('uploadFile');
+    	alert('uploadFile: '+mediaFile.fullPath);
         var ft = new FileTransfer(),
             path = mediaFile.fullPath,
             name = mediaFile.name;
