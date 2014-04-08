@@ -40,13 +40,11 @@ var app = {
         //ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
         ref.addEventListener('loadstart', function(event) { 
         //alert('stop: ' + event.url); 
-        alert(event.url.indexOf("blrb\/create") != -1);
-        alert(event.url.indexOf("blrb/create") != -1);
-        alert(event.url.indexOf("Blrb\/Create") != -1);
-        alert(event.url.indexOf("Blrb/Create") != -1);
-        	if(event.url.indexOf('blrb\/create') != -1)
+          	if(event.url.indexOf('Blrb/Create') != -1)
         	{
         		alert('at blrbr');
+        		ref.close();
+        		window.location="create.html";
         	}
          	}
         	);
