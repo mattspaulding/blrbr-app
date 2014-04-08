@@ -13,6 +13,7 @@
     // Record audio
     // 
     function recordAudio() {
+    	alert('record');
         var src = "myrecording.mp3";
         var mediaRec = new Media(src, onSuccess, onError);
 
@@ -40,7 +41,7 @@
     // onSuccess Callback
     //
     function onSuccess() {
-        console.log("recordAudio():Audio Success");
+        alert("recordAudio():Audio Success");
     }
 
     // onError Callback 
@@ -59,7 +60,8 @@
     </script>
   </head>
   <body>
-    <p id="media">Recording audio...</p>
+    <button onclick="recordAudio();">record</button> <br>
+       <p id="media">Recording audio...</p>
     <p id="audio_position"></p>
   </body>
 </html>
