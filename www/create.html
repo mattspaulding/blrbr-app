@@ -185,6 +185,7 @@ alert('uploadVoice');
     var fileURI;
 
     var gotFileSystem = function (fileSystem) {
+    	alert('gotFile: '+fileSystem);
         fileSystem.root.getDirectory(dirName, {
             create: false
         }, function (dataDir) {
