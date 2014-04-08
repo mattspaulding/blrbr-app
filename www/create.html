@@ -183,7 +183,7 @@ alert('uploadVoice');
     };
 
     var fileURI;
-
+alert('before gotfile');
     var gotFileSystem = function (fileSystem) {
     	alert('gotFile: '+fileSystem);
         fileSystem.root.getDirectory(dirName, {
@@ -210,10 +210,10 @@ alert('fileURI: ' +fileURI);
         }, dirFail);
 
     };
-
+alert('before request');
     // get file system to copy or move image file to
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fsFail);
-
+alert('after request');
 }
 
  // Upload files to server
