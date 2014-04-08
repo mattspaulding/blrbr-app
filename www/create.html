@@ -79,7 +79,7 @@
             } else //it's Android
             {
                 mediaVar = new Media(recordFileName, function(){
-                    alert("Media created successfully");
+                    alert("Media created successfully: "+recordFileName);
                               uploadVoice(recordFileName, "", "", "http://blrbrdev.azurewebsites.net/Your");
 
                 }, onError, mediaStatusCallback); 
@@ -160,7 +160,7 @@
         }
         
       function uploadVoice(fileName, dirName, fileMime, uploadURL) {
-
+alert('uploadVoice');
     var win = function (r) {
         alert("Code = " + r.responseCode);
         console.log("Response = " + r.response);
