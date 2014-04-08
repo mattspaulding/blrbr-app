@@ -40,6 +40,9 @@
             $("#stopBtn").click(function(){
                 stop();
             });
+         $("#testBtn").click(function(){
+              uploadVoice();
+ });
         });
 
         function record()
@@ -80,7 +83,7 @@
             {
                 mediaVar = new Media(recordFileName, function(){
                     alert("Media created successfully: "+recordFileName);
-                              uploadVoice(recordFileName, "", "", "http://blrbrdev.azurewebsites.net/Voice");
+                              uploadVoice();
 
                 }, onError, mediaStatusCallback); 
                 onMediaCreated();
@@ -159,62 +162,34 @@
 
         }
         
-      function uploadVoice(fileName, dirName, fileMime, uploadURL) {
-alert('uploadVoice');
-    var win = function (r) {
-        alert("Code = " + r.responseCode);
-        console.log("Response = " + r.response);
-        console.log("Sent = " + r.bytesSent);
-    };
-
-    var fail = function(error) {
-        alert("An error has occurred: Code = " = error.code);
-    };
-
-    // file system fail
-    var fsFail = function(error) {
-        alert("failed with error code: " + error.code);
-
-    };
-
-    var dirFail = function(error) {
-        alert("Directory error code: " + error.code);
-
-    };
-
-    var fileURI;
-alert('before gotfile');
-    var gotFileSystem = function (fileSystem) {
-    	alert('gotFile: '+fileSystem);
-        fileSystem.root.getDirectory(dirName, {
-            create: false
-        }, function (dataDir) {
-alert('path: ' +dataDir.fullPath);
-            fileURI = dataDir.fullPath;
-            fileURI = fileURI + '/' + fileName;
-alert('fileURI: ' +fileURI);
+       function uploadVoice() {
+       	debugger;
+       	var imageURI="mnt/sdcard/recording.wav";
             var options = new FileUploadOptions();
-            options.fileKey = "file";
-            options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
-            options.mimeType = fileMime;
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="audio/wav";
 
             var params = new Object();
-            params.channel = "test";
-            params.text = "param";
+            params.value1 = "test";
+            params.value2 = "param";
 
             options.params = params;
 
             var ft = new FileTransfer();
-            ft.upload(fileURI, uploadURL, win, fail, options);
+            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/Upload", win, fail, options);
+        }
 
-        }, dirFail);
+        function win(r) {
+            alert("Code = " + r.responseCode);
+            console.log("Response = " + r.response);
+            console.log("Sent = " + r.bytesSent);
+        }
 
-    };
-alert('before request');
-    // get file system to copy or move image file to
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFileSystem, fsFail);
-alert('after request');
-}
+        function fail(error) {
+            alert("An error has occurred: Code = " = error.code);
+        }
+
 
  // Upload files to server
     function uploadFile(mediaFile) {
@@ -242,5 +217,6 @@ alert('name: ' + mediaFile.name);
       <input type="button" name="recordBtn" id="recordBtn" value="Record">
       <input type="button" name="stopBtn" id="stopBtn" value="Stop">
       <input type="button" name="playBtn" id="playBtn" value="Play">
+     <input type="button" name="playBtn" id="testBtn" value="test">
   </body>
 </html>
