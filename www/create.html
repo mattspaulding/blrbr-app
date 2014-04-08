@@ -6,10 +6,7 @@
     <script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
     <script type="text/javascript" charset="utf-8">
 
-    // Wait for PhoneGap to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
-
+  
     // Record audio
     // 
     function recordAudio() {
@@ -19,10 +16,11 @@
 
         // Record audio
         mediaRec.startRecord();
-
+alert('mediaRec');
         // Stop recording after 10 sec
         var recTime = 0;
         var recInterval = setInterval(function() {
+        	alert('rectime: ' +recTime);
             recTime = recTime + 1;
             setAudioPosition(recTime + " sec");
             if (recTime >= 6) {
@@ -32,12 +30,7 @@
         }, 1000);
     }
 
-    // PhoneGap is ready
-    //
-    function onDeviceReady() {
-        recordAudio();
-    }
-
+  
     // onSuccess Callback
     //
     function onSuccess() {
