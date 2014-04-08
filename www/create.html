@@ -79,7 +79,7 @@
             } else //it's Android
             {
                 mediaVar = new Media(recordFileName, function(){
-                    log("Media created successfully");
+                    alert("Media created successfully");
                 }, onError, mediaStatusCallback); 
                 onMediaCreated();
             }
@@ -140,7 +140,7 @@
         {
             if (typeof err.message != 'undefined')
                 err = err.message;
-            alert("Error : " + err);
+            alert("Error : " + err.message);
         }
 
         function log(message)
