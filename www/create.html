@@ -81,9 +81,11 @@
                 }, onError); //of requestFileSystem
             } else //it's Android
             {
-                mediaVar = new Media(recordFileName, function(){
+                mediaVar = new Media(recordFileName, function(mediaFile){
+                	alert('path: '+mediaFile.fullPath);
+                	alert('name: '+mediaFile.name);
                     alert("Media created successfully: "+recordFileName);
-                              uploadVoice();
+                              uploadVoice(mediaFile);
 
                 }, onError, mediaStatusCallback); 
                 onMediaCreated();
