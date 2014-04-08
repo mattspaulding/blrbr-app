@@ -164,11 +164,12 @@
         
        function uploadVoice() {
        	debugger;
-       	var imageURI="/storage/emulated/0/recording.wav";
+       	var imageURI=Environment.getExternalStorageDirectory().getPath()+"/recording.wav";
+       	alert('uri: '+imageURI);
             var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-            options.mimeType="audio/wav";
+            options.mimeType="audio/mpeg";
 
             var params = new Object();
             params.value1 = "test";
