@@ -42,14 +42,13 @@ var app = {
         //alert('stop: ' + event.url); 
           	if(event.url.indexOf('Blrb/Create') != -1)
         	{
-        		alert('at blrbr');
         		ref.close();
         		window.location="create.html";
         	}
          	}
         	);
         ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
-        ref.addEventListener('exit', function(event) { alert(event.type); });
+        ref.addEventListener('exit', function(event) {  });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
