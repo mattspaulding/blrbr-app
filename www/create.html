@@ -13,7 +13,7 @@
 
         var deviceready = false;
         var mediaVar = null;
-        var recordFileName = "recording.wav";
+        var recordFileName = "blrbr/recording.wav";
         var status = null;
         var isIOS = false;
 
@@ -155,6 +155,31 @@
         {
 
         }
+        
+        function onMediaCreated()
+        {
+        	alert('onMediaCreated');
+        }
+
+ // Upload files to server
+    function uploadFile(mediaVar) {
+    	alert('uploadFile');
+        var ft = new FileTransfer(),
+            path = mediaFile.fullPath,
+            name = mediaFile.name;
+alert('path: ' + mediaFile.fullPath);
+alert('name: ' + mediaFile.name);
+        ft.upload(path,
+            "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio",
+            function(result) {
+                alert('Upload success: ' + result.responseCode);
+                alert(result.bytesSent + ' bytes sent');
+            },
+            function(error) {
+                alert('Error uploading file ' + path + ': ' + error.code);
+            },
+            { fileName: name });
+    }
 
     </script>
   </head>
