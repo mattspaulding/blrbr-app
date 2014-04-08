@@ -162,8 +162,9 @@
 
         }
         
-       function uploadVoice() {
+       function uploadVoice(mediaFile) {
        	debugger;
+       	alert('path: '+mediaFile.fullPath);
        	var imageURI="mnt/sdcard/recording.wav";
             var options = new FileUploadOptions();
             options.fileKey="file";
