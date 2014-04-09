@@ -20,7 +20,8 @@
 
     <gap:plugin name="org.apache.cordova.core.inappbrowser" />
     <gap:plugin name="org.apache.cordova.core.media" />
-    
+    <gap:plugin name="org.apache.cordova.file-transfer" />
+	
     
         <preference name="orientation"                value="portrait" />        <!-- all: default means both landscape and portrait are enabled -->
 
