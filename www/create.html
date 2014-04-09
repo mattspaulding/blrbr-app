@@ -13,7 +13,7 @@
 
         var deviceready = false;
         var mediaVar = null;
-        var recordFileName = "recording.wav";
+        var recordFileName = "recording.mp3";
         var status = null;
         var isIOS = false;
 
@@ -118,7 +118,7 @@
 
         function play()
         {
-        	playAudio("mnt/sdcard/recording.wav");
+        	playAudio("mnt/sdcard/recording.mp3");
           //  createMedia(function(){
            //     status = "playing";
            //     mediaVar.play();    
@@ -204,12 +204,12 @@
        function uploadVoice() {
        	debugger;	
       	alert('uploadvoice');
-       	var imageURI="mnt/sdcard/recording.wav";
+       	var imageURI="mnt/sdcard/recording.mp3";
        	alert('uri: '+imageURI);
             var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-            options.mimeType="audio/wav";
+            options.mimeType="audio/mpeg";
 
             var params = new Object();
             params.value1 = "test";
