@@ -81,9 +81,7 @@
                 }, onError); //of requestFileSystem
             } else //it's Android
             {
-            	var path=Environment.getExternalStorageDirectory().getPath();
-            	alert('path: '+path);
-                mediaVar = new Media(path+recordFileName, function(){
+                 mediaVar = new Media(recordFileName, function(){
                     alert("Media created successfully: "+recordFileName);
                               uploadVoice();
 
@@ -165,14 +163,14 @@
         }
         
        function uploadVoice() {
-       	debugger;
+       	debugger;	
        	alert('uploadvoice');
-       	var imageURI=Environment.getExternalStorageDirectory().getPath()+"recording.wav";
+       	var imageURI="sdcard/recording.wav";
        	alert('uri: '+imageURI);
             var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-            options.mimeType="audio/mpeg";
+            options.mimeType="audio/wav";
 
             var params = new Object();
             params.value1 = "test";
