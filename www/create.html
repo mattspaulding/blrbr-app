@@ -65,7 +65,7 @@
             setAudioPosition(recTime + " sec");
             if (recTime >= 6) {
                 clearInterval(recInterval);
-                mediaRec.stopRecord();
+                stop();
             }
         }, 1000);
             },onStatusChange);
@@ -151,6 +151,7 @@
         function playAudio(src) {
         	alert("src: "+src);
             if (mediaVar == null) {
+            	alert('mediaVarNULL');
                 // Create Media object from src
                 mediaVar = new Media(src, onSuccess, onError);
             } // else play current audio
