@@ -128,21 +128,25 @@
           //  });
         }
         
-           // Play audio
+        // Audio player
+        //
+        var mediaTimer = null;
+    // Play audio
         //
         function playAudio(src) {
-            if (my_media == null) {
+        	alert("src: "+src);
+            if (mediaVar == null) {
                 // Create Media object from src
-                my_media = new Media(src, onSuccess, onError);
+                mediaVar = new Media(src, onSuccess, onError);
             } // else play current audio
             // Play audio
-            my_media.play();
+            mediaVar.play();
 
-            // Update my_media position every second
+            // Update mediaVar position every second
             if (mediaTimer == null) {
                 mediaTimer = setInterval(function() {
-                    // get my_media position
-                    my_media.getCurrentPosition(
+                    // get mediaVar position
+                    mediaVar.getCurrentPosition(
                         // success callback
                         function(position) {
                             if (position > -1) {
