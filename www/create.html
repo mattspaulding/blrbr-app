@@ -81,7 +81,7 @@
                 }, onError); //of requestFileSystem
             } else //it's Android
             {
-                 mediaVar = new Media("sdcard/blrbr/"+recordFileName, function(){
+                 mediaVar = new Media(recordFileName, function(){
                     alert("Media created successfully: "+recordFileName);
                               uploadVoice();
 
@@ -165,7 +165,7 @@
        function uploadVoice() {
        	debugger;	
        	alert('uploadvoice');
-       	var imageURI="sdcard/blrbr/recording.wav";
+       	var imageURI="mnt/sdcard/recording.wav";
        	alert('uri: '+imageURI);
             var options = new FileUploadOptions();
             options.fileKey="file";
