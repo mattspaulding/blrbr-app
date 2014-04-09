@@ -162,10 +162,12 @@
 
         }
         
+     
+        
        function uploadVoice() {
        	debugger;	
-       	alert('uploadvoice');
-       	var imageURI="mnt/sdcard/recording.wav";
+      	alert('uploadvoice');
+       	var imageURI="http://www.dailywav.com/sites/default/files/wavs/enjoydream.wav";
        	alert('uri: '+imageURI);
             var options = new FileUploadOptions();
             options.fileKey="file";
@@ -179,7 +181,7 @@
             options.params = params;
 
             var ft = new FileTransfer();
-            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail,options);
+            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail);
         }
 
         function win(r) {
