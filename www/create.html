@@ -167,7 +167,7 @@
        function uploadVoice() {
        	debugger;	
       	alert('uploadvoice');
-       	var imageURI="storage/emulated/0/recording.wav";
+       	var imageURI="mnt/sdcard/recording.wav";
        	alert('uri: '+imageURI);
             var options = new FileUploadOptions();
             options.fileKey="file";
@@ -181,13 +181,13 @@
             options.params = params;
 
             var ft = new FileTransfer();
-            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail);
+            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail,options);
         }
 
         function win(r) {
             alert("Code = " + r.responseCode);
-            console.log("Response = " + r.response);
-            console.log("Sent = " + r.bytesSent);
+            alert("Response = " + r.response);
+            alert("Sent = " + r.bytesSent);
         }
 
         function fail(error) {
