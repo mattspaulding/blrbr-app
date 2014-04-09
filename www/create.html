@@ -44,7 +44,11 @@
               uploadVoice();
  });
         });
-
+  // Set audio position
+    // 
+    function setAudioPosition(position) {
+        document.getElementById('audio_position').innerHTML = position;
+    }
         function record()
         {
             createMedia(function(){
@@ -53,6 +57,17 @@
                 $("#recordBtn").hide();
                 $("#stopBtn").show();
                 $("#playBtn").hide();
+                
+                   // Stop recording after 6 sec
+        var recTime = 0;
+        var recInterval = setInterval(function() {
+            recTime = recTime + 1;
+            setAudioPosition(recTime + " sec");
+            if (recTime >= 6) {
+                clearInterval(recInterval);
+                mediaRec.stopRecord();
+            }
+        }, 1000);
             },onStatusChange);
         }
 
@@ -259,5 +274,8 @@ alert('name: ' + mediaFile.name);
       <input type="button" name="stopBtn" id="stopBtn" value="Stop">
       <input type="button" name="playBtn" id="playBtn" value="Play">
      <input type="button" name="playBtn" id="testBtn" value="test">
+     
+         <p id="audio_position"></p>
+
   </body>
 </html>
