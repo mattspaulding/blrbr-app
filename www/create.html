@@ -1,288 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title></title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
-    <meta charset="utf-8">
+    <!--
+     * Copyright (c) 2012, Intel Corporation
+     * File revision: 04 October 2012
+     * Please see http://software.intel.com/html5/license/samples 
+     * and the included README.md file for license terms and conditions.
+     -->
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title>Using PhoneGap Audio Media</title>
 
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
+	  <link rel="stylesheet" href="css/master.css" type="text/css" media="screen" title="no title" charset="utf-8"></link>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="js/deviceCheck.js"></script>
+      <script type="text/javascript" src="js/mediaHandlers.js"></script>
+      <script type="text/javascript" >
+          document.addEventListener("deviceready", onDeviceReady, false);
 
-    <script type="text/javascript">
+          function onDeviceReady() {
+              document.getElementById("PhonegapVerID").innerHTML += window.device.cordova;
+              console.log("onDeviceReady: " + document.getElementById("PhonegapVerID").innerHTML);
 
-        var deviceready = false;
-        var mediaVar = null;
-        var recordFileName = "recording.mp3";
-        var status = null;
-        var isIOS = false;
+              console.log("*** phoneCheck.android: " + phoneCheck.android);
+              console.log("*** phoneCheck.ios: " + phoneCheck.ios);
 
-        function onBodyLoad()
-        {        
-            document.addEventListener("deviceready", onDeviceReady, false);
-            deviceready = true;
-        }
+              // set initial button state
+              setButtonState(myMediaState.start);
 
-        $(document).ready(function(){
-            $("#stopBtn").hide();
-            $("#playBtn").hide();
+              // check if an existing media file already exist and reset button state
+              checkMediaRecFileExist();
+          }
 
-            //validation to check if device is ready is skipped
-
-            $("#recordBtn").click(function(){
-                record();                  
-            });
-
-            $("#playBtn").click(function(){
-                play();
-            });
-
-            $("#stopBtn").click(function(){
-                stop();
-            });
-         $("#testBtn").click(function(){
-              uploadVoice();
- });
-        });
-  // Set audio position
-    // 
-    function setAudioPosition(position) {
-        document.getElementById('audio_position').innerHTML = position;
-    }
-        function record()
-        {
-            createMedia(function(){
-                status = "recording";
-                mediaVar.startRecord();
-                $("#recordBtn").hide();
-                $("#stopBtn").show();
-                $("#playBtn").hide();
-                
-                   // Stop recording after 6 sec
-        var recTime = 0;
-        var recInterval = setInterval(function() {
-            recTime = recTime + 1;
-            setAudioPosition(recTime + " sec");
-            if (recTime >= 6) {
-                clearInterval(recInterval);
-                stop();
-            }
-        }, 1000);
-            },onStatusChange);
-        }
-
-        function createMedia(onMediaCreated, mediaStatusCallback){
-            if (mediaVar != null) {
-                onMediaCreated();
-                return;
-            }
-
-            if (typeof mediaStatusCallback == 'undefined') 
-                mediaStatusCallback = null;
-
-            if (isIOS) {
-                //first create the file
-                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
-                    fileSystem.root.getFile(recordFileName, {
-                        create: true,
-                        exclusive: false
-                    }, function(fileEntry){
-                        log("File " + recordFileName + " created at " + fileEntry.fullPath);
-                        mediaVar = new Media(fileEntry.fullPath, function(){
-                            log("Media created successfully");
-                        }, onError, mediaStatusCallback); //of new Media
-                        onMediaCreated();
-                    }, onError); //of getFile
-                }, onError); //of requestFileSystem
-            } else //it's Android
-            {
-                 mediaVar = new Media(recordFileName, function(){
-                    alert("Media created successfully: "+recordFileName);
-                              uploadVoice();
-
-                }, onError, mediaStatusCallback); 
-                onMediaCreated();
-              
-            }
-        }
-
-        function stop()
-        {
-            if (mediaVar == null)
-                return;
-
-            if (status == 'recording')
-            {
-                mediaVar.stopRecord();
-                log("Recording stopped");
-            }
-            else if (status == 'playing')
-            {
-                mediaVar.stop();            
-                log("Play stopped");
-            } 
-            else
-            {
-                log("Nothing stopped");
-            }
-            $("#recordBtn").show();
-            $("#stopBtn").hide();
-            $("#playBtn").show();
-            status = 'stopped';
-        }
-
-        function play()
-        {
-        	playAudio("mnt/sdcard/recording.mp3");
-          //  createMedia(function(){
-           //     status = "playing";
-           //     mediaVar.play();    
-           //     $("#recordBtn").hide();
-           //     $("#stopBtn").show();
-           //     $("#playBtn").hide();
-          //  });
-        }
-        
-        // Audio player
-        //
-        var mediaTimer = null;
-    // Play audio
-        //
-        function playAudio(src) {
-        	alert("src: "+src);
-            if (mediaVar == null) {
-            	alert('mediaVarNULL');
-                // Create Media object from src
-                mediaVar = new Media(src, onSuccess, onError);
-            } // else play current audio
-            // Play audio
-            mediaVar.play();
-
-            // Update mediaVar position every second
-            if (mediaTimer == null) {
-                mediaTimer = setInterval(function() {
-                    // get mediaVar position
-                    mediaVar.getCurrentPosition(
-                        // success callback
-                        function(position) {
-                            if (position > -1) {
-                                setAudioPosition((position) + " sec");
-                            }
-                        },
-                        // error callback
-                        function(e) {
-                            console.log("Error getting pos=" + e);
-                            setAudioPosition("Error: " + e);
-                        }
-                    );
-                }, 1000);
-            }
-        }
-
-
-        function onStatusChange()
-        {
-            if (arguments[0] == 4) //play stopped
-            {
-                $("#recordBtn").show();
-                $("#stopBtn").hide();
-                $("#playBtn").show();
-            } 
-        }
-
-        function onSuccess()
-        {
-            //do nothing
-        }
-
-        function onError(err)
-        {
-            if (typeof err.message != 'undefined')
-                err = err.message;
-            alert("Error : " + err.message);
-        }
-
-        function log(message)
-        {
-            if (isIOS)
-                console.log(message);
-            else
-                console.info(message);
-        }
-
-        function onDeviceReady()
-        {
-
-        }
-        
-     
-        
-       function uploadVoice() {
-       	debugger;	
-      	alert('uploadvoice');
-       	var imageURI="mnt/sdcard/recording.mp3";
-       	alert('uri: '+imageURI);
-            var options = new FileUploadOptions();
-            options.fileKey="file";
-            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-            options.mimeType="audio/mp3";
-            options.chunkedMode=false;
-
-            var params = new Object();
-            params.channel="myChannel";
-            params.text = "text";
-            params.username="blrbr";
-
-            options.params = params;
-
-            var ft = new FileTransfer();
-            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail,options);
-        }
-
-        function win(r) {
-            alert("Code = " + r.responseCode);
-            alert("Response = " + r.response);
-            alert("Sent = " + r.bytesSent);
-        }
-
-        function fail(error) {
-            alert("An error has occurred: Code = " = error.code);
-        }
-
-
- // Upload files to server
-/*
-    // function uploadFile(mediaFile) {
-    	// alert('uploadFile: '+mediaFile.fullPath);
-        // var ft = new FileTransfer(),
-            // path = mediaFile.fullPath,
-            // name = mediaFile.name;
-// alert('path: ' + mediaFile.fullPath);
-// alert('name: ' + mediaFile.name);
-        // ft.upload(path,
-            // "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio",
-            // function(result) {
-                // alert('Upload success: ' + result.responseCode);
-                // alert(result.bytesSent + ' bytes sent');
-            // },
-            // function(error) {
-                // alert('Error uploading file ' + path + ': ' + error.code);
-            // },
-            // { fileName: name });
-    // }*/
-/*
-	
-*/
-
-    </script>
+      </script>
   </head>
-  <body onload="onBodyLoad()">
-      <input type="button" name="recordBtn" id="recordBtn" value="Record">
-      <input type="button" name="stopBtn" id="stopBtn" value="Stop">
-      <input type="button" name="playBtn" id="playBtn" value="Play">
-     <input type="button" name="playBtn" id="testBtn" value="test">
-     
-         <p id="audio_position"></p>
+  <body>
+    <div id="container">
+       <div id="header">Media Sample v1.0</div>
+       <div id="body">
+           <div class="subheader" id="PhonegapVerID">Record with PhoneGap version: </div><br />
+           <div style="padding-left:15pt">
+               <button class="button_round" ID="startRecID" onclick="startRecording()">Record</button>
+               <button class="button_round" ID="stopRecID" onclick="stopRecording()">Stop</button>
+
+               <div id="RecStatusID">Status: </div>
+               <div id="media_rec_pos">Audio position: 0 sec</div>
+           </div><br />
+           <div class="subheader" id="PhonegapVerID">Playback Using PhoneGap</div><br />
+           <div style="padding-left:15pt">
+               <button class="button_round" ID="startPlayID" onclick="playMusic()">Play</button>
+               <button class="button_round" ID="pausePlayID" onclick="pauseMusic()">Pause</button>
+               <button class="button_round" ID="stopPlayID" onclick="stopMusic()">Stop</button>
+
+               <div id="PlayStatusID">Status: </div>
+               <div id="media_pos">Audio position: 0 sec</div>
+           </div>
+
+       </div>
+       <div id="footer"></div>
+    </div>
 
   </body>
 </html>
