@@ -225,7 +225,7 @@
             var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-            options.mimeType="audio/mpeg";
+            options.mimeType="audio/mp3";
 
             var params = new Object();
             params.channel="myChannel";
@@ -250,24 +250,28 @@
 
 
  // Upload files to server
-    function uploadFile(mediaFile) {
-    	alert('uploadFile: '+mediaFile.fullPath);
-        var ft = new FileTransfer(),
-            path = mediaFile.fullPath,
-            name = mediaFile.name;
-alert('path: ' + mediaFile.fullPath);
-alert('name: ' + mediaFile.name);
-        ft.upload(path,
-            "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio",
-            function(result) {
-                alert('Upload success: ' + result.responseCode);
-                alert(result.bytesSent + ' bytes sent');
-            },
-            function(error) {
-                alert('Error uploading file ' + path + ': ' + error.code);
-            },
-            { fileName: name });
-    }
+/*
+    // function uploadFile(mediaFile) {
+    	// alert('uploadFile: '+mediaFile.fullPath);
+        // var ft = new FileTransfer(),
+            // path = mediaFile.fullPath,
+            // name = mediaFile.name;
+// alert('path: ' + mediaFile.fullPath);
+// alert('name: ' + mediaFile.name);
+        // ft.upload(path,
+            // "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio",
+            // function(result) {
+                // alert('Upload success: ' + result.responseCode);
+                // alert(result.bytesSent + ' bytes sent');
+            // },
+            // function(error) {
+                // alert('Error uploading file ' + path + ': ' + error.code);
+            // },
+            // { fileName: name });
+    // }*/
+/*
+	
+*/
 
     </script>
   </head>
