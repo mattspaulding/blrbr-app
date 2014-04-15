@@ -13,7 +13,7 @@
 
         var deviceready = false;
         var mediaVar = null;
-        var recordFileName = "recording.amr";
+        var recordFileName = "recording.wav";
         var status = null;
         var isIOS = false;
 
@@ -133,7 +133,7 @@
 
         function play()
         {
-        	playAudio("mnt/sdcard/recording.amr");
+        	playAudio("mnt/sdcard/recording.wav");
           //  createMedia(function(){
            //     status = "playing";
            //     mediaVar.play();    
@@ -220,12 +220,12 @@
        function uploadVoice() {
        	debugger;	
       	alert('uploadvoice');
-       	var imageURI="mnt/sdcard/recording.amr";
+       	var imageURI="mnt/sdcard/recording.wav";
        	alert('uri: '+imageURI);
             var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-            options.mimeType="audio/AMR";
+            options.mimeType="audio/wav";
 
             var params = new Object();
             params.channel="myChannel";
