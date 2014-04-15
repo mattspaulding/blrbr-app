@@ -13,7 +13,7 @@
 
         var deviceready = false;
         var mediaVar = null;
-        var recordFileName = "recording.mp3";
+        var recordFileName = "recording.amr";
         var status = null;
         var isIOS = false;
 
@@ -133,7 +133,7 @@
 
         function play()
         {
-        	playAudio("mnt/sdcard/recording.mp3");
+        	playAudio("mnt/sdcard/recording.amr");
           //  createMedia(function(){
            //     status = "playing";
            //     mediaVar.play();    
@@ -225,7 +225,7 @@
             var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-            options.mimeType="audio/mp3";
+            options.mimeType="audio/AMR";
 
             var params = new Object();
             params.channel="myChannel";
@@ -235,7 +235,7 @@
             options.params = params;
 
             var ft = new FileTransfer();
-            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail);
+            ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail,options);
         }
 
         function win(r) {
