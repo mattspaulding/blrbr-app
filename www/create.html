@@ -25,7 +25,7 @@
 			$(document).ready(function() {
 				$("#stopBtn").hide();
 				$("#playBtn").hide();
-	$("#blrbBtn").hide();
+				$("#blrbBtn").hide();
 
 				//validation to check if device is ready is skipped
 
@@ -57,18 +57,18 @@
 					$("#recordBtn").hide();
 					$("#stopBtn").show();
 					$("#playBtn").hide();
-	$("#blrbBtn").hide();
+					$("#blrbBtn").hide();
 
 					// Stop recording after 6 sec
-					var recTime = 0.00;
+					var recTime = 0;
 					var recInterval = setInterval(function() {
-						recTime = recTime + .01;
+						recTime = recTime + 1;
 						setAudioPosition(recTime + " sec");
-						if (recTime >= 6.00) {
+						if (recTime >= 6) {
 							clearInterval(recInterval);
 							stop();
 						}
-					}, 1);
+					}, 1000);
 				}, onStatusChange);
 			}
 
@@ -102,6 +102,7 @@
 				{
 					mediaVar = new Media(recordFileName, function() {
 						Console.log("Media created successfully: " + recordFileName);
+						uploadVoice();
 					}, onError, mediaStatusCallback);
 					onMediaCreated();
 				}
@@ -124,8 +125,8 @@
 				$("#stopBtn").hide();
 				$("#playBtn").show();
 				$("#blrbBtn").show();
-			status = 'stopped';
-				}
+				status = 'stopped';
+			}
 
 			function play() {
 				playAudio("mnt/sdcard/recording.amr");
@@ -153,7 +154,7 @@
 				// Play audio
 				alert("before play");
 				mediaVar.play();
-alert("after play");
+				alert("after play");
 				// Update mediaVar position every second
 				if (mediaTimer == null) {
 					alert("after mediatimer");
