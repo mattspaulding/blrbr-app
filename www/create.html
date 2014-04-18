@@ -101,7 +101,7 @@
 				} else//it's Android
 				{
 					mediaVar = new Media(recordFileName, function() {
-						Console.log("Media created successfully: " + recordFileName);
+						alert("Media created successfully: " + recordFileName);
 						uploadVoice();
 					}, onError, mediaStatusCallback);
 					onMediaCreated();
