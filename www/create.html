@@ -90,9 +90,9 @@
 						}, function(fileEntry) {
 							log("File " + recordFileName + " created at " + fileEntry.fullPath);
 							mediaVar = new Media(fileEntry.fullPath, function() {
-								uploadVoice();
-								log("Media created successfully");
-							}, onError, mediaStatusCallback);
+								alert("Media created successfully");
+							uploadVoice();
+								}, onError, mediaStatusCallback);
 							//of new Media
 							onMediaCreated();
 						}, onError);
@@ -209,9 +209,8 @@
 			}
 
 			function uploadVoice() { debugger;
-				alert('uploadvoice MediaVar: '+MediaVar);
+				alert('uploadvoice mediaVar: '+mediaVar);
 				var imageURI = "mnt/sdcard/recording.amr";
-				Console.log('uri: ' + imageURI);
 				var options = new FileUploadOptions();
 				options.fileKey = "file";
 				options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
@@ -224,7 +223,6 @@
 				params.username = "blrbr";
 
 				options.params = params;
-				alert("uri: "+imageURI);
 				var ft = new FileTransfer();
 				ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail, options);
 			}
