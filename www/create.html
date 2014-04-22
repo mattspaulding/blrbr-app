@@ -90,7 +90,7 @@
 						}, function(fileEntry) {
 							log("File " + recordFileName + " created at " + fileEntry.fullPath);
 							mediaVar = new Media(fileEntry.fullPath, function() {
-								UploadVoice();
+								uploadVoice();
 								log("Media created successfully");
 							}, onError, mediaStatusCallback);
 							//of new Media
@@ -224,7 +224,7 @@
 				params.username = "blrbr";
 
 				options.params = params;
-alert("uri: "+imageURI);
+				alert("uri: "+imageURI);
 				var ft = new FileTransfer();
 				ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail, options);
 			}
