@@ -145,6 +145,7 @@
 			// Play audio
 			//
 			function playAudio(src) {
+				debugger;
 				alert("src: " + src);
 				if (mediaVar == null) {
 					alert('mediaVarNULL');
@@ -156,7 +157,7 @@
 				mediaVar.play();
 				alert("after play");
 				// Update mediaVar position every second
-				if (mediaTimer == null) {
+			//	if (mediaTimer == null) {
 					alert("after mediatimer");
 					mediaTimer = setInterval(function() {
 						// get mediaVar position
@@ -174,7 +175,7 @@
 						});
 					}, 1000);
 				}
-			}
+			//}
 
 			function onStatusChange() {
 				if (arguments[0] == 4)//play stopped
