@@ -90,6 +90,7 @@
 						}, function(fileEntry) {
 							log("File " + recordFileName + " created at " + fileEntry.fullPath);
 							mediaVar = new Media(fileEntry.fullPath, function() {
+								UploadVoice();
 								log("Media created successfully");
 							}, onError, mediaStatusCallback);
 							//of new Media
@@ -208,7 +209,7 @@
 			}
 
 			function uploadVoice() { debugger;
-				alert('uploadvoice');
+				alert('uploadvoice MediaVar: '+MediaVar);
 				var imageURI = "mnt/sdcard/recording.amr";
 				Console.log('uri: ' + imageURI);
 				var options = new FileUploadOptions();
@@ -223,7 +224,7 @@
 				params.username = "blrbr";
 
 				options.params = params;
-
+alert("uri: "+imageURI);
 				var ft = new FileTransfer();
 				ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail, options);
 			}
@@ -235,7 +236,7 @@
 			}
 
 			function fail(error) {
-				Console.log("An error has occurred: Code = " = error.code);
+				alert("An error has occurred: Code = " = error.code);
 			}
 
 			// Upload files to server
