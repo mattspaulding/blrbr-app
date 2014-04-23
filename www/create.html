@@ -62,8 +62,10 @@
 					// Stop recording after 6 sec
 					var recTime = 0;
 					var recInterval = setInterval(function() {
+						if (status == 'recording') {
 						recTime = recTime + 1;
 						setAudioPosition(recTime + " sec");
+						}
 						if (recTime >= 6) {
 							clearInterval(recInterval);
 							stop();
@@ -102,7 +104,7 @@
 				} else//it's Android
 				{
 					mediaVar = new Media(recordFileName, function() {
-						alert("Media created successfully: " + recordFileName);
+						//alert("Media created successfully: " + recordFileName);
 					}, onError, mediaStatusCallback);
 					onMediaCreated();
 				}
@@ -114,6 +116,7 @@
 
 				if (status == 'recording') {
 					mediaVar.stopRecord();
+					
 					log("Recording stopped");
 				} else if (status == 'playing') {
 					mediaVar.stop();
@@ -133,7 +136,7 @@
 				  var media = new Media(
         'recording.amr',
         function() {
-          alert( "Media Success" );
+          //alert( "Media Success" );
         },
         
         function() {
@@ -143,44 +146,7 @@
       media.play();
 			}
 
-			// Audio player
-			//
-			var mediaTimer = null;
-			// Play audio
-			//
-			function playAudio(src) {
-				debugger;
-				alert("src: " + src);
-				if (mediaVar == null) {
-					alert('mediaVarNULL');
-					// Create Media object from src
-					mediaVar = new Media(src, onSuccess, onError);
-				}// else play current audio
-				// Play audio
-				alert("before play");
-				mediaVar.play();
-				alert("after play");
-				// Update mediaVar position every second
-			//	if (mediaTimer == null) {
-					alert("after mediatimer");
-					mediaTimer = setInterval(function() {
-						// get mediaVar position
-						mediaVar.getCurrentPosition(
-						// success callback
-						function(position) {
-							if (position > -1) {
-								//setAudioPosition((position) + " sec");
-								return position + " sec";
-							}
-						},
-						// error callback
-						function(e) {
-							alert("Error getting pos=" + e);
-							setAudioPosition("Error: " + e);
-						});
-					}, 1000);
-				}
-			//}
+		
 
 			function onStatusChange() {
 				if (arguments[0] == 4)//play stopped
@@ -232,9 +198,9 @@
 			}
 
 			function win(r) {
-				alert("Code = " + r.responseCode);
-				alert("Response = " + r.response);
-				alert("Sent = " + r.bytesSent);
+				///alert("Code = " + r.responseCode);
+				///alert("Response = " + r.response);
+				///alert("Sent = " + r.bytesSent);
 			}
 
 			function fail(error) {
