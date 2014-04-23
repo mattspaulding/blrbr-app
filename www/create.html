@@ -129,14 +129,18 @@
 			}
 
 			function play() {
-				playAudio("recording.amr");
-				//  createMedia(function(){
-				//     status = "playing";
-				//     mediaVar.play();
-				//     $("#recordBtn").hide();
-				//     $("#stopBtn").show();
-				//     $("#playBtn").hide();
-				//  });
+				//playAudio("recording.amr");
+				  var media = new Media(
+        'recording.amr',
+        function() {
+          alert( "Media Success" );
+        },
+        
+        function() {
+          alert( "Media Failure, reason: " + err );
+        });
+
+      media.play();
 			}
 
 			// Audio player
@@ -165,7 +169,8 @@
 						// success callback
 						function(position) {
 							if (position > -1) {
-								setAudioPosition((position) + " sec");
+								//setAudioPosition((position) + " sec");
+								return position + " sec";
 							}
 						},
 						// error callback
