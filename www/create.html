@@ -5,6 +5,7 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
 		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 		<script type="text/javascript" src="js/jquery.js"></script>
@@ -63,10 +64,10 @@
 					var recTime = 0;
 					var recInterval = setInterval(function() {
 						if (status == 'recording') {
-						recTime = recTime + 1;
-						setAudioPosition(recTime + " sec");
+							recTime = recTime + 1;
+							setAudioPosition(recTime + " sec");
 						}
-						if (recTime >= 6 || status!='recording') {
+						if (recTime >= 6 || status != 'recording') {
 							clearInterval(recInterval);
 							stop();
 						}
@@ -92,9 +93,9 @@
 						}, function(fileEntry) {
 							log("File " + recordFileName + " created at " + fileEntry.fullPath);
 							mediaVar = new Media(fileEntry.fullPath, function() {
-								alert("Media created successfully");
-							uploadVoice();
-								}, onError, mediaStatusCallback);
+								//alert("Media created successfully");
+								uploadVoice();
+							}, onError, mediaStatusCallback);
 							//of new Media
 							onMediaCreated();
 						}, onError);
@@ -116,7 +117,7 @@
 
 				if (status == 'recording') {
 					mediaVar.stopRecord();
-					
+
 					log("Recording stopped");
 				} else if (status == 'playing') {
 					mediaVar.stop();
@@ -133,20 +134,14 @@
 
 			function play() {
 				//playAudio("recording.amr");
-				  var media = new Media(
-        'recording.amr',
-        function() {
-          //alert( "Media Success" );
-        },
-        
-        function() {
-          alert( "Media Failure, reason: " + err );
-        });
+				var media = new Media('recording.amr', function() {
+					//alert( "Media Success" );
+				}, function() {
+					//alert("Media Failure, reason: " + err);
+				});
 
-      media.play();
+				media.play();
 			}
-
-		
 
 			function onStatusChange() {
 				if (arguments[0] == 4)//play stopped
@@ -165,7 +160,7 @@
 			function onError(err) {
 				if ( typeof err.message != 'undefined')
 					err = err.message;
-				alert("Error : " + err.message);
+				//alert("Error : " + err.message);
 			}
 
 			function log(message) {
@@ -204,42 +199,28 @@
 			}
 
 			function fail(error) {
-				alert("An error has occurred: Code = " = error.code);
+				//alert("An error has occurred: Code = " = error.code);
 			}
-
-			// Upload files to server
-			/*
-			 // function uploadFile(mediaFile) {
-			 // alert('uploadFile: '+mediaFile.fullPath);
-			 // var ft = new FileTransfer(),
-			 // path = mediaFile.fullPath,
-			 // name = mediaFile.name;
-			 // alert('path: ' + mediaFile.fullPath);
-			 // alert('name: ' + mediaFile.name);
-			 // ft.upload(path,
-			 // "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio",
-			 // function(result) {
-			 // alert('Upload success: ' + result.responseCode);
-			 // alert(result.bytesSent + ' bytes sent');
-			 // },
-			 // function(error) {
-			 // alert('Error uploading file ' + path + ': ' + error.code);
-			 // },
-			 // { fileName: name });
-			 // }*/
-			/*
-
-			 */
 
 		</script>
 	</head>
 	<body onload="onBodyLoad()">
-		<input type="button" name="recordBtn" id="recordBtn" value="Record">
-		<input type="button" name="stopBtn" id="stopBtn" value="Stop">
-		<input type="button" name="playBtn" id="playBtn" value="Play">
-		<input type="button" name="blrbBtn" id="blrbBtn" value="Blrb">
-
-		<p id="audio_position"></p>
-
+		<button class="btn btn-default btn-lg" style="float:right" name="blrbBtn" id="blrbBtn">
+				<span class="glyphicon glyphicon-cloud-upload"></span> Blrb
+			</button>
+			
+		
+		<div style="text-align: center; padding-top: 200px;">
+			<button class="btn btn-default btn-lg" name="recordBtn" id="recordBtn">
+				<span class="glyphicon glyphicon-record"></span> Record
+			</button>
+			<button class="btn btn-default btn-lg" name="stopBtn" id="stopBtn">
+				<span class="glyphicon glyphicon-stop"></span> Stop
+			</button>
+			<button class="btn btn-default btn-lg" name="playBtn" id="playBtn">
+				<span class="glyphicon glyphicon-play"></span> Play
+			</button>
+			<p id="audio_position"></p>
+		</div>
 	</body>
 </html>
