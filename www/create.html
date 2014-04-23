@@ -34,6 +34,10 @@
 					record();
 				});
 
+				$("#backBtn").click(function() {
+					window.location="index.html";
+				});
+
 				$("#playBtn").click(function() {
 					play();
 				});
@@ -62,7 +66,8 @@
 
 					// Stop recording after 6 sec
 					var recTime = 0;
-					var recInterval = setInterval(function() {
+						setAudioPosition(recTime + " sec");
+						var recInterval = setInterval(function() {
 						if (status == 'recording') {
 							recTime = recTime + 1;
 							setAudioPosition(recTime + " sec");
@@ -194,7 +199,7 @@
 					$("#stopBtn").hide();
 					$("#playBtn").hide();
 					$("#blrbBtn").hide();
-					$("#audio_position").innerHTML ="blrbing...";
+						document.getElementById('audio_position').innerHTML ="blrbing...";
 					
 			
 			}
@@ -213,21 +218,24 @@
 	<body onload="onBodyLoad()">
 		<div id="buttonGroup">
 		<button class="btn btn-default btn-lg" style="float:right" name="blrbBtn" id="blrbBtn">
-				<span class="glyphicon glyphicon-cloud-upload"></span> Blrb
+				<span class="glyphicon glyphicon-cloud-upload"></span> blrb
+			</button>
+		<button class="btn btn-default btn-lg" style="float:left" name="backBtn" id="backBtn">
+				<span class="glyphicon glyphicon-hand-left"></span> back
 			</button>
 			
 		
 		<div style="text-align: center; padding-top: 200px;">
 			<button class="btn btn-default btn-lg" name="recordBtn" id="recordBtn">
-				<span class="glyphicon glyphicon-record"></span> Record
+				<span class="glyphicon glyphicon-record"></span> record
 			</button>
 			<button class="btn btn-default btn-lg" name="stopBtn" id="stopBtn">
-				<span class="glyphicon glyphicon-stop"></span> Stop
+				<span class="glyphicon glyphicon-stop"></span> stop
 			</button>
 			<button class="btn btn-default btn-lg" name="playBtn" id="playBtn">
-				<span class="glyphicon glyphicon-play"></span> Play
+				<span class="glyphicon glyphicon-play"></span> play
 			</button>
-			<p id="audio_position"></p>
+			<p id="audio_position" style="padding-top: 40px;"></p>
 		</div>
 		</div>
 		
