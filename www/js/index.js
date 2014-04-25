@@ -41,7 +41,7 @@ var app = {
         ref.addEventListener('loadstart', function(event) { 
         //alert('stop: ' + event.url); 
         
-          	if(event.url.indexOf('Blrb/Me') != -1)
+          	if(event.url.indexOf('Blrb/Stream') != -1)
           	{
           		debugger;
           		alert("ME");
