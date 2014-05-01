@@ -63,10 +63,10 @@ var app = {
         		ref.close();
         		alert(event.url);
         		var p=event.url.split('username=')[1];
-        		var q=p.split('channel=')[1];
+        		var q=p.split('&channel=')[1];
         		window.username=p.split('channel=')[0];
-        		window.channel=q.split('text=')[1];
-        		window.text=q.split('text=')[1];
+        		window.channel=q.split('&text=')[0];
+        		window.text=q.split('&text=')[1];
         		alert(window.username);
         		alert(window.channel);
         		alert(window.text);
