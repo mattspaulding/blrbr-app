@@ -53,6 +53,9 @@ var app = {
         	{
         		debugger;
         		ref.close();
+        		alert(event.url);
+        		window.username=event.url.split('username')[1];
+        		alert(window.username);
         		window.location="create.html";
         	}
          	}
