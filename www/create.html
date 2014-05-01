@@ -211,7 +211,7 @@
 				options.fileKey = "file";
 				options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
 				options.mimeType = "audio/amr";
-				options.chunkedMode = false;
+				//options.chunkedMode = false;
 
 				var params = new Object();
 				params.channel = window.channel;
@@ -253,7 +253,7 @@
 			</button>
 			
 		
-		<div style="text-align: center; padding-top: 200px;">
+		<div style="text-align: center; padding-top: 100px;">
 			<button class="btn btn-default btn-lg" name="recordBtn" id="recordBtn">
 				<span class="glyphicon glyphicon-record"></span> record
 			</button>
@@ -266,16 +266,16 @@
 			<p id="audio_position" style="padding-top: 40px;"></p>
 		</div>
 	<div style="text-align: center; padding-top: 20px;">
-		<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:200px;"></textarea>
+		<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>
 			
 		</div>
 		   <div class="row">
-            <div class="col-xs-6">
-                <input id="tweetCheckbox" type="checkbox" class="checkbox right" checked="checked" />
-            </div>
-            <div class="col-xs-6">
+            <span>
+                <input id="tweetCheckbox" type="checkbox" class="checkbox" checked="checked" />
+            </span>
+            <span>
                 tweet
-            </div>
+            </span>
         </div>
 
 		</div>
