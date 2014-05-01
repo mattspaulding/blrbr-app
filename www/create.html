@@ -35,14 +35,11 @@
         		window.username=p.split('&channel=')[0];
         		window.channel=q.split('&text=')[0];
         		window.text=q.split('&text=')[1];
-        		alert(window.username);
-        		alert(window.channel);
-        		alert(window.text);
-      
+        	
 				alert("username: "+ window.username);
 				alert("channel: "+ window.channel);
 				alert("text: "+ window.text);
-				$("#text_textarea").value=window.text;
+				$("#text_textarea").val(window.text);
 
 				//validation to check if device is ready is skipped
 
