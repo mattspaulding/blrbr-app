@@ -31,8 +31,6 @@
 				
 				try
 				{
-						alert(window.location.href);
-						alert(decodeURIComponent(window.location.href));
 						var href=decodeURIComponent(window.location.href);
         		var p=href.split('username=')[1];
         		var q=p.split('&channel=')[1];
@@ -48,9 +46,6 @@
         			window.text="";
         		}
         	
-				alert("username: "+ window.username);
-				alert("channel: "+ window.channel);
-				alert("text: "+ window.text);
 				$("#text_textarea").val(window.text);
 				}
 				catch(err)
@@ -222,7 +217,8 @@
 				params.channel = window.channel;
 				params.text = $("#text_textarea").val();
 				params.username = window.username;
-
+     			params.isTweet = $('#tweetCheckbox').prop('checked');
+   
 				options.params = params;
 				var ft = new FileTransfer();
 				ft.upload(imageURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail, options);
@@ -241,6 +237,7 @@
 			}
 
 			function fail(error) {
+				alert("blrb error: "+error);
 					window.location="index.html";
 			}
 
@@ -272,6 +269,15 @@
 		<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:200px;"></textarea>
 			
 		</div>
+		   <div class="row">
+            <div class="col-xs-6">
+                <input id="tweetCheckbox" type="checkbox" class="checkbox" checked="checked" />
+            </div>
+            <div class="col-xs-6">
+                tweet
+            </div>
+        </div>
+
 		</div>
 		
 	</body>
