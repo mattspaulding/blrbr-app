@@ -41,10 +41,18 @@ var app = {
         ref.addEventListener('loadstart', function(event) { 
         //alert('stop: ' + event.url); 
         
-          	if(event.url.indexOf('Blrb/Stream') != -1)
+          	if(event.url.indexOf('Blrb/Me') != -1)
           	{
           		debugger;
           		alert("ME");
+          		alert(event.url);
+          		alert(event);
+          	}
+        
+       	if(event.url.indexOf('Blrb/Stream') != -1)
+          	{
+          		debugger;
+          		alert("Stream");
           		alert(event.url);
           		alert(event);
           	}
@@ -54,8 +62,11 @@ var app = {
         		debugger;
         		ref.close();
         		alert(event.url);
-        		window.username=event.url.split('username')[1];
+        		var p=event.url.split('username=')[1];
+        		window.username=p.split('channel=')[0];
+        		window.channel=p.split('channel=')[1];
         		alert(window.username);
+        		alert(window.channel);
         		window.location="create.html";
         	}
          	}
