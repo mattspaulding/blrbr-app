@@ -61,7 +61,7 @@ var app = {
         	{
         		ref.close();
         		
-        		window.location=decodeURIComponent("create.html?"+event.url.split('?')[1]);
+        		window.location= "create.html?"+event.url.split('?')[1];
         	}
          	}
         	);

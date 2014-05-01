@@ -32,7 +32,9 @@
 				try
 				{
 						alert(window.location.href);
-        		var p=window.location.href.split('username=')[1];
+						alert(decodeURIComponent(window.location.href));
+						var href=decodeURIComponent(window.location.href);
+        		var p=href.split('username=')[1];
         		var q=p.split('&channel=')[1];
         		window.username=p.split('&channel=')[0];
         		window.channel=q.split('&text=')[0];
