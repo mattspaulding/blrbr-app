@@ -31,7 +31,7 @@
 				
 				try
 				{
-						var href=decodeURIComponent(window.location.href);
+				var href=decodeURIComponent(window.location.href);
         		var p=href.split('username=')[1];
         		var q=p.split('&channel=')[1];
         		window.username=p.split('&channel=')[0];
@@ -41,7 +41,7 @@
         			window.channel="";
         		}
         		window.text=q.split('&text=')[1];
-        		if(window.text==" ")
+        		if(window.text==" "||window.text=="  ")
         		{
         			window.text="";
         		}
@@ -232,8 +232,8 @@
 			}
 
 			function win(r) {
-					window.location="index.html";
-		
+				alert("blrb sent: "+r);
+				window.location="index.html";
 			}
 
 			function fail(error) {
