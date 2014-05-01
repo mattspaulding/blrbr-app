@@ -20,6 +20,7 @@
 			function onBodyLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
 				deviceready = true;
+				
 			}
 
 
@@ -27,6 +28,8 @@
 				$("#stopBtn").hide();
 				$("#playBtn").hide();
 				$("#blrbBtn").hide();
+				
+				$("#text_textarea").value=window.text;
 
 				//validation to check if device is ready is skipped
 
@@ -236,6 +239,10 @@
 				<span class="glyphicon glyphicon-play"></span> play
 			</button>
 			<p id="audio_position" style="padding-top: 40px;"></p>
+		</div>
+	<div style="text-align: center; padding-top: 20px;">
+		<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:200px;"></textarea>
+			
 		</div>
 		</div>
 		
