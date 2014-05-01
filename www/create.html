@@ -232,7 +232,7 @@
 			}
 
 			function win(r) {
-				alert("blrb sent: "+r);
+				alert("blrb sent: "+r.tweetStatus);
 				window.location="index.html";
 			}
 
@@ -265,20 +265,15 @@
 			</button>
 			<p id="audio_position" style="padding-top: 40px;"></p>
 		</div>
-	<div style="text-align: center; padding-top: 20px;">
+		</div>
+		<div style="text-align: center; padding-top: 20px;">
 		<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>
 			
 		</div>
-		   <div class="row">
-            <span>
-                <input id="tweetCheckbox" type="checkbox" class="checkbox" checked="checked" />
-            </span>
-            <span>
-                tweet
-            </span>
+		   <div>
+                <input id="tweetCheckbox" type="checkbox" class="checkbox" checked="checked" /> tweet
         </div>
 
-		</div>
 		
 	</body>
 </html>
