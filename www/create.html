@@ -29,6 +29,8 @@
 				$("#playBtn").hide();
 				$("#blrbBtn").hide();
 				
+				try
+				{
 						alert(window.location.href);
         		var p=window.location.href.split('username=')[1];
         		var q=p.split('&channel=')[1];
@@ -40,6 +42,11 @@
 				alert("channel: "+ window.channel);
 				alert("text: "+ window.text);
 				$("#text_textarea").val(window.text);
+				}
+				catch(err)
+				{
+	alert("data transfer error: "+err);
+				}
 
 				//validation to check if device is ready is skipped
 
@@ -65,7 +72,6 @@
 			// Set audio position
 			//
 			function setAudioPosition(position) {
-				document.getElementById('audio_position').innerHTML = position;
 			}
 
 			function record() {
