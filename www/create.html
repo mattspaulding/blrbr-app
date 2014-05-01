@@ -207,9 +207,9 @@
 				options.chunkedMode = false;
 
 				var params = new Object();
-				params.channel = "myChannel";
-				params.text = "text";
-				params.username = "blrbr";
+				params.channel = window.channel;
+				params.text = window.text;
+				params.username = window.username;
 
 				options.params = params;
 				var ft = new FileTransfer();
