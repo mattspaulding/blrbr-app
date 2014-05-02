@@ -113,12 +113,12 @@
 					mediaStatusCallback = null;
 				if (phoneCheck.ios != null) {
 					//first create the file
-					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+					window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSystem) {
 						fileSystem.root.getFile(recordFileName, {
 							create : true,
 							exclusive : false
 						}, function(fileEntry) {
-							//alert("File " + recordFileName + " created at " + fileEntry.fullPath);
+							alert("File " + recordFileName + " created at " + fileEntry.fullPath);
 							mediaVar = new Media(fileEntry.fullPath, function() {
 								//alert("Media created successfully");
 								//uploadVoice();
@@ -207,7 +207,8 @@
 			options.mimeType = "audio/amr";
 	
 		if (phoneCheck.ios != null) {
-					audioURI = "file:///recording.wav";
+					audioURI = window.rootFS.fullPath + "/recording.wav";
+					alert("path: "+audioURI);
 					options.fileName = "recording.wav";
 					options.mimeType = "audio/wav";
 				}
