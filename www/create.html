@@ -9,6 +9,7 @@
 
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 		<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/deviceCheck.js"></script>
 
 		<script type="text/javascript">
 			var deviceready = false;
@@ -114,7 +115,8 @@
 
 				if ( typeof mediaStatusCallback == 'undefined')
 					mediaStatusCallback = null;
-
+alert("isIOS: "+isIOS);
+alert("phoneCheck: "+phoneCheck)
 				if (isIOS) {
 					//first create the file
 					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
