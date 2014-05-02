@@ -14,18 +14,15 @@
 		<script type="text/javascript">
 			var deviceready = false;
 			var mediaVar = null;
-			var recordFileName = "recording.amr";
-			var audioURI = "mnt/sdcard/recording.amr";
 			var status = null;
-			var isIOS = false;
-
+			var recordFileName = "recording.amr";
+		
 			function onBodyLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
 				deviceready = true;
-				if (phoneCheck.ios != null) {
+		if (phoneCheck.ios != null) {
 					alert("I'm ios");
 					recordFileName = "recording.wav";
-					audioURI = "recording.wav";
 				}
 			}
 
@@ -196,22 +193,26 @@
 			}
 
 			function log(message) {
-				if (isIOS)
 					alert(message);
-				else
-					console.info(message);
 			}
-
 			function onDeviceReady() {
 
 			}
 
 			function uploadVoice() { debugger;
-				var options = new FileUploadOptions();
-				options.fileKey = "file";
-				options.fileName = audioURI.substr(audioURI.lastIndexOf('/') + 1);
-				options.mimeType = "audio/amr";
-			
+	var audioURI = "mnt/sdcard/recording.amr";
+		
+	var options = new FileUploadOptions();
+			options.fileKey = "file";
+			options.fileName = "recording.amr";
+			options.mimeType = "audio/amr";
+	
+		if (phoneCheck.ios != null) {
+					audioURI = "documents://recording.wav";
+					options.fileName = "recording.wav";
+					options.mimeType = "audio/wav";
+				}
+	
 				var params = new Object();
 				params.channel = window.channel;
 				params.text = $("#text_textarea").val();
@@ -225,6 +226,7 @@
 				$("#stopBtn").hide();
 				$("#playBtn").hide();
 				$("#blrbBtn").hide();
+				$("#text_textarea").hide();
 				document.getElementById('audio_position').innerHTML = "blrbing...";
 
 			}
@@ -264,8 +266,9 @@
 			</div>
 		</div>
 		<div style="text-align: center; padding-top: 20px;">
-			<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>			
+			<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>						
 			
+
 
 		</div>
 		<div>
