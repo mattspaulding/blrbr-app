@@ -18,11 +18,6 @@
 			var audioURI = "mnt/sdcard/recording.amr";
 			var status = null;
 			var isIOS = false;
-				var options = new FileUploadOptions();
-				options.fileKey = "file";
-				options.fileName = audioURI.substr(audioURI.lastIndexOf('/') + 1);
-				options.mimeType = "audio/amr";
-			
 
 			function onBodyLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
@@ -212,6 +207,10 @@
 			}
 
 			function uploadVoice() { debugger;
+				var options = new FileUploadOptions();
+				options.fileKey = "file";
+				options.fileName = audioURI.substr(audioURI.lastIndexOf('/') + 1);
+				options.mimeType = "audio/amr";
 			
 				var params = new Object();
 				params.channel = window.channel;
