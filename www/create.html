@@ -122,10 +122,10 @@
 							create : true,
 							exclusive : false
 						}, function(fileEntry) {
-							log("File " + recordFileName + " created at " + fileEntry.fullPath);
+							alert("File " + recordFileName + " created at " + fileEntry.fullPath);
 							mediaVar = new Media(fileEntry.fullPath, function() {
-								//alert("Media created successfully");
-								uploadVoice();
+								alert("Media created successfully");
+								//uploadVoice();
 							}, onError, mediaStatusCallback);
 							//of new Media
 							onMediaCreated();
