@@ -21,8 +21,7 @@
 				document.addEventListener("deviceready", onDeviceReady, false);
 				deviceready = true;
 		if (phoneCheck.ios != null) {
-					alert("I'm ios");
-					recordFileName = "recording.wav";
+										recordFileName = "recording.wav";
 				}
 			}
 
@@ -119,9 +118,9 @@
 							create : true,
 							exclusive : false
 						}, function(fileEntry) {
-							alert("File " + recordFileName + " created at " + fileEntry.fullPath);
+							//alert("File " + recordFileName + " created at " + fileEntry.fullPath);
 							mediaVar = new Media(fileEntry.fullPath, function() {
-								alert("Media created successfully");
+								//alert("Media created successfully");
 								//uploadVoice();
 							}, onError, mediaStatusCallback);
 							//of new Media
@@ -193,7 +192,7 @@
 			}
 
 			function log(message) {
-					alert(message);
+					//alert(message);
 			}
 			function onDeviceReady() {
 
@@ -208,7 +207,7 @@
 			options.mimeType = "audio/amr";
 	
 		if (phoneCheck.ios != null) {
-					audioURI = "documents://recording.wav";
+					audioURI = "documents/tmp/recording.wav";
 					options.fileName = "recording.wav";
 					options.mimeType = "audio/wav";
 				}
