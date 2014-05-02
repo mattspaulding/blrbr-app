@@ -113,16 +113,16 @@
 					mediaStatusCallback = null;
 				if (phoneCheck.ios != null) {
 					//first create the file
-					window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSystem) {
+					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
 						fileSystem.root.getFile(recordFileName, {
 							create : true,
 							exclusive : false
 						}, function(fileEntry) {
-							alert("File " + recordFileName + " created at " + fileEntry.fullPath);
 							mediaVar = new Media(fileEntry.fullPath, function() {
+							alert("File " + recordFileName + " created at " + fileEntry.fullPath);
 								//alert("Media created successfully");
 								//uploadVoice();
-							}, onError, mediaStatusCallback);
+							}, alert(), mediaStatusCallback);
 							//of new Media
 							onMediaCreated();
 						}, onError);
