@@ -14,10 +14,14 @@
 		<script type="text/javascript">
 			var deviceready = false;
 			var mediaVar = null;
-			var recordFileName = "recording.amr";
-			var audioURI = "mnt/sdcard/recording.amr";
 			var status = null;
-			var isIOS = false;
+				var recordFileName = "recording.amr";
+			var audioURI = "mnt/sdcard/recording.amr";
+			var options = new FileUploadOptions();
+				options.fileKey = "file";
+				options.fileName = "recording.amr";
+				options.mimeType = "audio/amr";
+			
 
 			function onBodyLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
@@ -25,7 +29,9 @@
 				if (phoneCheck.ios != null) {
 					alert("I'm ios");
 					recordFileName = "recording.wav";
-					audioURI = "recording.wav";
+					audioURI = "documents://recording.wav";
+				options.fileName = "recording.wav";
+					options.mimeType="audio/wav";
 				}
 			}
 
@@ -207,12 +213,7 @@
 			}
 
 			function uploadVoice() { debugger;
-				var options = new FileUploadOptions();
-				options.fileKey = "file";
-				options.fileName = audioURI.substr(audioURI.lastIndexOf('/') + 1);
-				options.mimeType = "audio/amr";
-				//options.chunkedMode = false;
-
+			
 				var params = new Object();
 				params.channel = window.channel;
 				params.text = $("#text_textarea").val();
@@ -226,6 +227,7 @@
 				$("#stopBtn").hide();
 				$("#playBtn").hide();
 				$("#blrbBtn").hide();
+			$("#text_textarea").hide();
 				document.getElementById('audio_position').innerHTML = "blrbing...";
 
 			}
