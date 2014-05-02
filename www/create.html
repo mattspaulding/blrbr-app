@@ -52,7 +52,7 @@
 				catch(err)
 				{
 				alert("data transfer error: "+err);
-				window.location="index.html";
+				//window.location="index.html";
 		
 				}
 
@@ -115,9 +115,8 @@
 
 				if ( typeof mediaStatusCallback == 'undefined')
 					mediaStatusCallback = null;
-alert("isIOS: "+isIOS);
-alert("phoneCheck: "+phoneCheck)
-				if (isIOS) {
+				if (phoneCheck.ios!=null) {
+					alert("i'm ios")
 					//first create the file
 					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
 						fileSystem.root.getFile(recordFileName, {
