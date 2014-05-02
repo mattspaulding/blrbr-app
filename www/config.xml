@@ -16,7 +16,7 @@
         Matt Spaulding
     </author>
 
-  <preference name="permissions"                value="none"/>
+ <!-- <preference name="permissions"                value="none"/> -->
 
     <!-- Customize your app and platform with the preference element. -->
     <preference name="phonegap-version"           value="3.3.0" />          <!-- all: current version of PhoneGap -->
