@@ -9,7 +9,7 @@
 
 		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 		<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/deviceCheck.js"></script>
+		<script type="text/javascript" src="js/deviceCheck.js"></script>
 
 		<script type="text/javascript">
 			var deviceready = false;
@@ -18,15 +18,20 @@
 			var audioURI = "mnt/sdcard/recording.amr";
 			var status = null;
 			var isIOS = false;
+				var options = new FileUploadOptions();
+				options.fileKey = "file";
+				options.fileName = audioURI.substr(audioURI.lastIndexOf('/') + 1);
+				options.mimeType = "audio/amr";
+			
 
 			function onBodyLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
 				deviceready = true;
-						if (phoneCheck.ios!=null) {
-							alert("I'm ios");
-		recordFileName="recording.wav";
-		audioURI="recording.wav";
-		}
+				if (phoneCheck.ios != null) {
+					alert("I'm ios");
+					recordFileName = "recording.wav";
+					audioURI = "recording.wav";
+				}
 			}
 
 
@@ -34,31 +39,26 @@
 				$("#stopBtn").hide();
 				$("#playBtn").hide();
 				$("#blrbBtn").hide();
-				
-				try
-				{
-				var href=decodeURIComponent(window.location.href);
-        		var p=href.split('username=')[1];
-        		var q=p.split('&channel=')[1];
-        		window.username=p.split('&channel=')[0];
-        		window.channel=q.split('&text=')[0];
-        		if(window.channel==" ")
-        		{
-        			window.channel="";
-        		}
-        		window.text=q.split('&text=')[1];
-        		if(window.text==" "||window.text=="  ")
-        		{
-        			window.text="";
-        		}
-        	
-				$("#text_textarea").val(window.text);
-				}
-				catch(err)
-				{
-				alert("data transfer error: "+err);
-				//window.location="index.html";
-		
+
+				try {
+					var href = decodeURIComponent(window.location.href);
+					var p = href.split('username=')[1];
+					var q = p.split('&channel=')[1];
+					window.username = p.split('&channel=')[0];
+					window.channel = q.split('&text=')[0];
+					if (window.channel == " ") {
+						window.channel = "";
+					}
+					window.text = q.split('&text=')[1];
+					if (window.text == " " || window.text == "  ") {
+						window.text = "";
+					}
+
+					$("#text_textarea").val(window.text);
+				} catch(err) {
+					alert("data transfer error: " + err);
+					//window.location="index.html";
+
 				}
 
 				//validation to check if device is ready is skipped
@@ -68,7 +68,7 @@
 				});
 
 				$("#backBtn").click(function() {
-					window.location="index.html";
+					window.location = "index.html";
 				});
 
 				$("#playBtn").click(function() {
@@ -98,8 +98,8 @@
 
 					// Stop recording after 6 sec
 					var recTime = 0;
-						setAudioPosition(recTime + " sec");
-						var recInterval = setInterval(function() {
+					setAudioPosition(recTime + " sec");
+					var recInterval = setInterval(function() {
 						if (status == 'recording') {
 							recTime = recTime + 1;
 							setAudioPosition(recTime + " sec");
@@ -120,7 +120,7 @@
 
 				if ( typeof mediaStatusCallback == 'undefined')
 					mediaStatusCallback = null;
-				if (phoneCheck.ios!=null) {
+				if (phoneCheck.ios != null) {
 					//first create the file
 					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
 						fileSystem.root.getFile(recordFileName, {
@@ -170,7 +170,7 @@
 
 			function play() {
 				//playAudio("recording.amr");
-				
+
 				var media = new Media(recordFileName, function() {
 					//alert( "Media Success" );
 				}, function() {
@@ -212,73 +212,67 @@
 			}
 
 			function uploadVoice() { debugger;
-				var options = new FileUploadOptions();
-				options.fileKey = "file";
-				options.fileName = audioURI.substr(audioURI.lastIndexOf('/') + 1);
-				options.mimeType = "audio/amr";
-				//options.chunkedMode = false;
-
+			
 				var params = new Object();
 				params.channel = window.channel;
 				params.text = $("#text_textarea").val();
 				params.username = window.username;
-     			params.isTweet = $('#tweetCheckbox').prop('checked');
-   
+				params.isTweet = $('#tweetCheckbox').prop('checked');
+
 				options.params = params;
 				var ft = new FileTransfer();
 				ft.upload(audioURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail, options);
-					$("#recordBtn").hide();
-					$("#stopBtn").hide();
-					$("#playBtn").hide();
-					$("#blrbBtn").hide();
-						document.getElementById('audio_position').innerHTML ="blrbing...";
-					
-			
+				$("#recordBtn").hide();
+				$("#stopBtn").hide();
+				$("#playBtn").hide();
+				$("#blrbBtn").hide();
+				document.getElementById('audio_position').innerHTML = "blrbing...";
+
 			}
 
 			function win(r) {
-				alert("blrb sent: "+r.tweetStatus);
-				window.location="index.html";
+				alert("blrb sent: " + r.tweetStatus);
+				window.location = "index.html";
 			}
 
 			function fail(error) {
-				alert("blrb error: "+error.code);
-					window.location="index.html";
+				alert("blrb error: " + error.code);
+				window.location = "index.html";
 			}
 
 		</script>
 	</head>
 	<body onload="onBodyLoad()">
 		<div id="buttonGroup">
-		<button class="btn btn-default btn-lg" style="float:right" name="blrbBtn" id="blrbBtn">
+			<button class="btn btn-default btn-lg" style="float:right" name="blrbBtn" id="blrbBtn">
 				<span class="glyphicon glyphicon-cloud-upload"></span> blrb
 			</button>
-		<button class="btn btn-default btn-lg" style="float:left" name="backBtn" id="backBtn">
+			<button class="btn btn-default btn-lg" style="float:left" name="backBtn" id="backBtn">
 				<span class="glyphicon glyphicon-hand-left"></span> back
 			</button>
-			
-		
-		<div style="text-align: center; padding-top: 100px;">
-			<button class="btn btn-default btn-lg" name="recordBtn" id="recordBtn">
-				<span class="glyphicon glyphicon-record"></span> record
-			</button>
-			<button class="btn btn-default btn-lg" name="stopBtn" id="stopBtn">
-				<span class="glyphicon glyphicon-stop"></span> stop
-			</button>
-			<button class="btn btn-default btn-lg" name="playBtn" id="playBtn">
-				<span class="glyphicon glyphicon-play"></span> play
-			</button>
-			<p id="audio_position" style="padding-top: 40px;"></p>
-		</div>
+
+			<div style="text-align: center; padding-top: 100px;">
+				<button class="btn btn-default btn-lg" name="recordBtn" id="recordBtn">
+					<span class="glyphicon glyphicon-record"></span> record
+				</button>
+				<button class="btn btn-default btn-lg" name="stopBtn" id="stopBtn">
+					<span class="glyphicon glyphicon-stop"></span> stop
+				</button>
+				<button class="btn btn-default btn-lg" name="playBtn" id="playBtn">
+					<span class="glyphicon glyphicon-play"></span> play
+				</button>
+				<p id="audio_position" style="padding-top: 40px;"></p>
+			</div>
 		</div>
 		<div style="text-align: center; padding-top: 20px;">
-		<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>
+			<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>			
 			
-		</div>
-		   <div>
-                <input id="tweetCheckbox" type="checkbox" class="checkbox" checked="checked" /> tweet
-        </div>
 
-		
+		</div>
+		<div>
+			<input id="tweetCheckbox" type="checkbox" class="checkbox" checked="checked" />
+			tweet
+		</div>
+
 	</body>
 </html>
