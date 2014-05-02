@@ -11,9 +11,8 @@ version   = "1.0.0">
 	<author href="http://phonegap.com" email="support@phonegap.com">Matt Spaulding</author>
 
 	<!-- <preference name="permissions"                value="none"/> -->
-	<preference name="permissions"                value="RECORD_AUDIO"/>
-	<preference name="permissions"                value="WRITE_EXTERNAL_STORAGE"/>
-	<preference name="permissions"                value="INTERNET"/>
+	<preference name="permissions"                value="none"/>
+	
 
 	<!-- Customize your app and platform with the preference element. -->
 	<preference name="phonegap-version"           value="3.3.0" />
