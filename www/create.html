@@ -15,14 +15,16 @@
 			var deviceready = false;
 			var mediaVar = null;
 			var recordFileName = "recording.amr";
-			var iosFileName = "recording.wav";
-			var status = null;
+				var status = null;
 			var isIOS = false;
 
 			function onBodyLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
 				deviceready = true;
-				
+						if (phoneCheck.ios!=null) {
+							alert("I'm ios");
+		recordFileName="recording.wav";
+		}
 			}
 
 
@@ -117,10 +119,9 @@
 				if ( typeof mediaStatusCallback == 'undefined')
 					mediaStatusCallback = null;
 				if (phoneCheck.ios!=null) {
-					alert("i'm ios")
 					//first create the file
 					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-						fileSystem.root.getFile(iosFileName, {
+						fileSystem.root.getFile(recordFileName, {
 							create : true,
 							exclusive : false
 						}, function(fileEntry) {
@@ -167,7 +168,8 @@
 
 			function play() {
 				//playAudio("recording.amr");
-				var media = new Media('recording.amr', function() {
+				
+				var media = new Media(recordFileName, function() {
 					//alert( "Media Success" );
 				}, function() {
 					//alert("Media Failure, reason: " + err);
