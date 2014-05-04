@@ -245,12 +245,14 @@
 
 			function win(r) {
 				//alert("blrb sent: " + r.tweetStatus);
-				window.location = "index.html";
+				app.initialize();
+				//window.location = "index.html";
 			}
 
 			function fail(error) {
 				alert("blrb error: " + error.code);
-				window.location = "index.html";
+				app.initialize();
+				//window.location = "index.html";
 			}
 
 		</script>
