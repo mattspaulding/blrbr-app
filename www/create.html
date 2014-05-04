@@ -210,17 +210,16 @@
 
 				if (phoneCheck.ios != null) {
 
-					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
-						var directoryReader = fs.root.createReader();
-						directoryReader.readEntries(function(entries) {
-							audioURI = entries[0].toURI();
-					alert(audioURI);
-								audioURI = entries[1].toURI();
-					alert(audioURI);
-						});
-					});
+				//	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
+				//		var directoryReader = fs.root.createReader();
+				//		directoryReader.readEntries(function(entries) {
+				//			audioURI = "cdvfile://localhost/persistent/recording.wav";
+				//				audioURI = entries[1].toURI();
+				//	alert(audioURI);
+				//		});
+				//	});
 
-					//audioURI = "/recording.wav";
+					audioURI = "cdvfile://localhost/persistent/recording.wav";
 					options.fileName = "recording.wav";
 					options.mimeType = "audio/wav";
 							options.chunkedMode = false;
