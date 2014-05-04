@@ -48,13 +48,7 @@ var app = {
         		
         		window.location= "create.html?"+event.url.split('?')[1];
         	}
-        	if(event.url.indexOf('index.html') != -1)
-        	{
-        		alert("index");
-        		ref.close();
-        		
-        		window.location= "create.html?"+event.url.split('?')[1];
-        	}
+       
          	}
         	);
         ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
