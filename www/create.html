@@ -16,12 +16,12 @@
 			var mediaVar = null;
 			var status = null;
 			var recordFileName = "recording.amr";
-		
+
 			function onBodyLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
 				deviceready = true;
-		if (phoneCheck.ios != null) {
-										recordFileName = "recording.wav";
+				if (phoneCheck.ios != null) {
+					recordFileName = "recording.wav";
 				}
 			}
 
@@ -113,14 +113,14 @@
 					mediaStatusCallback = null;
 				if (phoneCheck.ios != null) {
 					//first create the file
-					window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSystem) {
-						   // save the file system for later access
-      					fileSystem.root.getFile(recordFileName, {
+					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+						// save the file system for later access
+						fileSystem.root.getFile(recordFileName, {
 							create : true,
 							exclusive : false
 						}, function(fileEntry) {
 							mediaVar = new Media(fileEntry.fullPath, function() {
-							alert("File " + recordFileName + " created at " + fileEntry.fullPath);
+								alert("File " + recordFileName + " created at " + fileEntry.fullPath);
 								//alert("Media created successfully");
 								//uploadVoice();
 							}, alert(), mediaStatusCallback);
@@ -193,28 +193,38 @@
 			}
 
 			function log(message) {
-					//alert(message);
+				//alert(message);
 			}
+
 			function onDeviceReady() {
 
 			}
 
 			function uploadVoice() { debugger;
-	var audioURI = "mnt/sdcard/recording.amr";
-		
-	var options = new FileUploadOptions();
-			options.fileKey = "file";
-			options.fileName = "recording.amr";
-			options.mimeType = "audio/amr";
-			options.chunkedMode = false;
-	
-		if (phoneCheck.ios != null) {
-					audioURI ="/recording.wav";
+				var audioURI = "mnt/sdcard/recording.amr";
+
+				var options = new FileUploadOptions();
+				options.fileKey = "file";
+				options.fileName = "recording.amr";
+				options.mimeType = "audio/amr";
+
+				if (phoneCheck.ios != null) {
+
+					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
+						var directoryReader = fs.root.createReader();
+						directoryReader.readEntries(function(entries) {
+							audioURI = entries[0].toURI();
+							// Selected File path
+						});
+					});
+
+					//audioURI = "/recording.wav";
 					alert(audioURI);
-						options.fileName = "recording.wav";
+					options.fileName = "recording.wav";
 					options.mimeType = "audio/wav";
+							options.chunkedMode = false;
 				}
-	
+
 				var params = new Object();
 				params.channel = window.channel;
 				params.text = $("#text_textarea").val();
@@ -240,8 +250,6 @@
 
 			function fail(error) {
 				alert("blrb error: " + error.code);
-				alert("blrb error: " + error.target);
-				alert("blrb error: " + error.source);
 				window.location = "index.html";
 			}
 
@@ -270,8 +278,9 @@
 			</div>
 		</div>
 		<div style="text-align: center; padding-top: 20px;">
-			<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>						
+			<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>									
 			
+
 
 
 		</div>
