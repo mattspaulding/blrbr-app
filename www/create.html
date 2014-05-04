@@ -208,7 +208,7 @@
 			options.mimeType = "audio/amr";
 	
 		if (phoneCheck.ios != null) {
-					audioURI ="recording.wav";
+					audioURI ="/recording.wav";
 					alert(audioURI);
 						options.fileName = "recording.wav";
 					options.mimeType = "audio/wav";
@@ -239,6 +239,8 @@
 
 			function fail(error) {
 				alert("blrb error: " + error.code);
+				alert("blrb error: " + error.target);
+				alert("blrb error: " + error.source);
 				window.location = "index.html";
 			}
 
