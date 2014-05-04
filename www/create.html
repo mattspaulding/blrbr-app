@@ -113,7 +113,7 @@
 					mediaStatusCallback = null;
 				if (phoneCheck.ios != null) {
 					//first create the file
-					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+					window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSystem) {
 						// save the file system for later access
 						fileSystem.root.getFile(recordFileName, {
 							create : true,
@@ -219,7 +219,7 @@
 				//		});
 				//	});
 
-					audioURI = "cdvfile://localhost/persistent/recording.wav";
+					audioURI = "tmp/recording.wav";
 					options.fileName = "recording.wav";
 					options.mimeType = "audio/wav";
 							options.chunkedMode = false;
