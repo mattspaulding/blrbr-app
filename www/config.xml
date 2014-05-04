@@ -10,7 +10,7 @@ version   = "1.0.0">
 	<description>real-time social audio</description>
 	<author href="http://phonegap.com" email="support@phonegap.com">Matt Spaulding</author>
 
-	<!-- <preference name="permissions"                value="none"/> -->
+	<preference name="permissions"                value="none"/>
 	
 
 	<!-- Customize your app and platform with the preference element. -->
@@ -24,13 +24,13 @@ version   = "1.0.0">
 	<!-- all: hides the status bar at the top of the screen -->
 	<preference name="prerendered-icon"           value="true" />
 	<!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
-	<preference name="ios-statusbarstyle"         value="black-translucent" />
+	<preference name="ios-statusbarstyle"         value="black-opaque" />
 	<!-- ios: black-translucent will appear black because the PhoneGap webview doesn't go beneath the status bar -->
 	<preference name="detect-data-types"          value="true" />
 	<!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
 	<preference name="exit-on-suspend"            value="false" />
 	<!-- ios: if set to true, app will terminate when home button is pressed -->
-	<preference name="auto-hide-splash-screen"    value="true" />
+	<preference name="auto-hide-splash-screen"    value="false" />
 	<!-- ios: if set to false, the splash screen must be hidden using a JavaScript API -->
 	<preference name="disable-cursor"             value="false" />
 	<!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
