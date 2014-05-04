@@ -19,6 +19,8 @@
 var app = {
     // Application Constructor
     initialize: function() {
+    	    StatusBar.hide();
+    
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -53,7 +55,6 @@ var app = {
         ref.addEventListener('loaderror', function(event) { alert('error: ' + event.message); });
         ref.addEventListener('exit', function(event) {  });
         
-        StatusBar.hide();
          navigator.splashscreen.hide();
     },
     // Update DOM on a Received Event
