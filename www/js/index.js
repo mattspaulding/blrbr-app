@@ -73,8 +73,11 @@ var app = {
 };
 
 	function onBodyLoad() {
+		alert("app: "+app);
+		if(app==null)
+		{
 				alert("onbodyload");
 				app.initialize();
-			}
+			}}
 
 

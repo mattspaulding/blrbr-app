@@ -210,19 +210,19 @@
 
 				if (phoneCheck.ios != null) {
 
-					//	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
-					//		var directoryReader = fs.root.createReader();
-					//		directoryReader.readEntries(function(entries) {
-					//			audioURI = "cdvfile://localhost/persistent/recording.wav";
-					//				audioURI = entries[1].toURI();
-					//	alert(audioURI);
-					//		});
-					//	});
+				//	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
+				//		var directoryReader = fs.root.createReader();
+				//		directoryReader.readEntries(function(entries) {
+				//			audioURI = "cdvfile://localhost/persistent/recording.wav";
+				//				audioURI = entries[1].toURI();
+				//	alert(audioURI);
+				//		});
+				//	});
 
 					audioURI = "cdvfile://localhost/temporary/recording.wav";
 					options.fileName = "recording.wav";
 					options.mimeType = "audio/wav";
-					options.chunkedMode = false;
+							options.chunkedMode = false;
 				}
 
 				var params = new Object();
@@ -245,12 +245,8 @@
 
 			function win(r) {
 				//alert("blrb sent: " + r.tweetStatus);
-				if (phoneCheck.ios != null) {
-					window.location = "index.html";
-				} else {
-					window.location = "index.html";
-					app.initialize();
-				}
+				//app.initialize();
+				window.location = "index.html";
 			}
 
 			function fail(error) {
@@ -283,9 +279,8 @@
 			</div>
 		</div>
 		<div style="text-align: center; padding-top: 20px;">
-			<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>												
+			<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>									
 			
-
 
 
 
