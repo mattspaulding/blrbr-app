@@ -119,7 +119,7 @@
 							exclusive : false
 						}, function(fileEntry) {
 							mediaVar = new Media(fileEntry.fullPath, function() {
-							alert("File " + recordFileName + " created at " + fileEntry.fullPath);
+							//alert("File " + recordFileName + " created at " + fileEntry.fullPath);
 								//alert("Media created successfully");
 								//uploadVoice();
 							}, alert(), mediaStatusCallback);
@@ -208,8 +208,7 @@
 	
 		if (phoneCheck.ios != null) {
 					audioURI = "/recording.wav";
-					alert("path: "+audioURI);
-					options.fileName = "recording.wav";
+						options.fileName = "recording.wav";
 					options.mimeType = "audio/wav";
 				}
 	
