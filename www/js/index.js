@@ -19,8 +19,6 @@
 var app = {
     // Application Constructor
     initialize: function() {
-    	    StatusBar.hide();
-    
         this.bindEvents();
     },
     // Bind Event Listeners
