@@ -71,3 +71,10 @@ var app = {
     
    
 };
+
+	function onBodyLoad() {
+				alert("onbodyload");
+				app.initialize();
+			}
+
+
