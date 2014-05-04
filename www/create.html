@@ -113,7 +113,7 @@
 					mediaStatusCallback = null;
 				if (phoneCheck.ios != null) {
 					//first create the file
-					window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSystem) {
+					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
 						// save the file system for later access
 						fileSystem.root.getFile(recordFileName, {
 							create : true,
@@ -210,16 +210,17 @@
 
 				if (phoneCheck.ios != null) {
 
-					window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fs) {
+					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
 						var directoryReader = fs.root.createReader();
 						directoryReader.readEntries(function(entries) {
 							audioURI = entries[0].toURI();
-							// Selected File path
+					alert(audioURI);
+								audioURI = entries[1].toURI();
+					alert(audioURI);
 						});
 					});
 
 					//audioURI = "/recording.wav";
-					alert(audioURI);
 					options.fileName = "recording.wav";
 					options.mimeType = "audio/wav";
 							options.chunkedMode = false;
