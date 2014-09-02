@@ -36,7 +36,7 @@ var app = {
 		app.receivedEvent('deviceready');
 
 		//var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
-	        var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
+	        var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=yes,location=yes');
 
 		//ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
 		ref.addEventListener('loadstart', function(event) {
@@ -44,6 +44,7 @@ var app = {
 
 			//if (event.url.indexOf('Blrb/Create') != -1) {
 			if (event.url.indexOf('createblrb') != -1) {
+				alert("blrb");
 				ref.close();
 
 				window.location = "create.html?" + event.url.split('?')[1];
