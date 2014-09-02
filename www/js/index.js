@@ -35,16 +35,14 @@ var app = {
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
 
-		//var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
-	        var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=yes,location=yes');
+		var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
+	        //var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
 
 		//ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
 		ref.addEventListener('loadstart', function(event) {
 			//alert('stop: ' + event.url);
 
-			//if (event.url.indexOf('Blrb/Create') != -1) {
-			if (event.url.indexOf('access') != -1) {
-				alert("blrb");
+			if (event.url.indexOf('Blrb/Create') != -1) {
 				ref.close();
 
 				window.location = "create.html?" + event.url.split('?')[1];
