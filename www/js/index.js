@@ -35,7 +35,8 @@ var app = {
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
 
-		var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
+		//var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
+	        var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
 
 		//ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
 		ref.addEventListener('loadstart', function(event) {
