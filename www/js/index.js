@@ -20,6 +20,8 @@
 var app = {
 	// Application Constructor
 	initialize : function() {
+		var route=localStorage.route;
+		alert("route: "+route);
 		this.bindEvents();
 	},
 	// Bind Event Listeners

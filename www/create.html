@@ -59,7 +59,8 @@
 				});
 
 				$("#backBtn").click(function() {
-					window.location = "index.html?back=true";
+					localStorage.route = 'default';
+					window.location = "index.html";
 				});
 
 				$("#playBtn").click(function() {
