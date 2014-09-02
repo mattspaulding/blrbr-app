@@ -78,13 +78,7 @@ var app = {
 var login=function() {
 					var ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
 	  							ref.addEventListener('loadstart', function(event) {
-	  								alert(localstorage.route);
-			if(localstorage.route=="blrb/me")
-			{
-				alert("redirecting");
-				ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
-			}
-
+	  							
 			if (event.url.indexOf('Blrb/Create') != -1) {
 				ref.close();
 			window.location = "create.html?" + event.url.split('?')[1];
