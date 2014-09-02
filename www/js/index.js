@@ -21,6 +21,8 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 			this.bindEvents();
+			
+			
 		alert(localstorage.route);
 		if(localstorage.route=="blrb/me")
 		{
