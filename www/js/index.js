@@ -81,6 +81,12 @@ var channel=function() {
 	  					ref.addEventListener('loadstart', function(event) {
 			alert('stop: ' + event.url);
 alert(event.url.split("/").length);
+var segs=event.url.split("/");
+alert(segs[0]);
+alert(segs[1]);
+alert(segs[2]);
+alert(segs[3]);
+
 			if (event.url.indexOf('Blrb/Create') != -1) {
 				ref.close();
 
