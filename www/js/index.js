@@ -20,14 +20,9 @@
 var app = {
 	// Application Constructor
 	initialize : function() {
-		var route=localStorage.route;
-		alert("route: "+route);
-		this.bindEvents();
+			this.bindEvents();
 		
-		if(route=='default')
-		{
-			login();
-		}
+	
 	},
 	// Bind Event Listeners
 	//
@@ -81,23 +76,23 @@ var app = {
 };
 
 var login=function() {
-					var ref = window.open('http://blrbrdev.azurewebsites.net/account/login', '_blank', 'toolbar=no,location=no');
+					var ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
 	  							ref.addEventListener('loadstart', function(event) {
-			// alert('stop: ' + event.url);
-// alert(event.url.split("/").length);
-// 
-// alert(segs[3]);
+	  								alert(localstorage.route);
+			if(localstorage.route=="stream/me")
+			{
+				alert("redirecting");
+				ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
+			}
 
 			if (event.url.indexOf('Blrb/Create') != -1) {
 				ref.close();
-
-				window.location = "create.html?" + event.url.split('?')[1];
+			window.location = "create.html?" + event.url.split('?')[1];
 			}
 		
 var segs=event.url.split("/");
 	if (segs[3] == "") {
 				ref.close();
-
 				window.location = "index.html";
 			}
 	
