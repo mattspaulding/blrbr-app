@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-	
+	var ref=window;
 var app = {
 	// Application Constructor
 	initialize : function() {
@@ -40,36 +40,25 @@ var app = {
 		//var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
 	        //var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
 
-		//ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
-		ref.addEventListener('loadstart', function(event) {
-			//alert('stop: ' + event.url);
+		// //ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
+		// ref.addEventListener('loadstart', function(event) {
+			// //alert('stop: ' + event.url);
+// 
+			// if (event.url.indexOf('Blrb/Create') != -1) {
+				// ref.close();
+// 
+				// window.location = "create.html?" + event.url.split('?')[1];
+			// }
+// 		
+		// });
+		// ref.addEventListener('loaderror', function(event) {
+			// alert('error: ' + event.message);
+		// });
+		// ref.addEventListener('exit', function(event) {
+		// });
 
-			if (event.url.indexOf('Blrb/Create') != -1) {
-				ref.close();
-
-				window.location = "create.html?" + event.url.split('?')[1];
-			}
-		if (event.url.indexOf('Home/Index') != -1) {
-				ref.close();
-
-				window.location = "index.html";
-			}
-
-if (event.url.indexOf('/') != -1) {
-				ref.close();
-
-				window.location = "index.html";
-			}
-
-		});
-		ref.addEventListener('loaderror', function(event) {
-			alert('error: ' + event.message);
-		});
-		ref.addEventListener('exit', function(event) {
-		});
-
-		StatusBar.hide();
-		navigator.splashscreen.hide();
+		// StatusBar.hide();
+		// navigator.splashscreen.hide();
 	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
@@ -89,4 +78,20 @@ var login=function() {
 	  				};
 var channel=function() {
 					var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
+	  					ref.addEventListener('loadstart', function(event) {
+			//alert('stop: ' + event.url);
+
+			if (event.url.indexOf('Blrb/Create') != -1) {
+				ref.close();
+
+				window.location = "create.html?" + event.url.split('?')[1];
+			}
+		
+		});
+		ref.addEventListener('loaderror', function(event) {
+			alert('error: ' + event.message);
+		});
+		ref.addEventListener('exit', function(event) {
+		});
+
 	  				};
