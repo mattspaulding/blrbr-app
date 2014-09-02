@@ -24,7 +24,7 @@ var app = {
 		alert("route: "+route);
 		this.bindEvents();
 		
-		if(route='default')
+		if(route=='default')
 		{
 			login();
 		}
