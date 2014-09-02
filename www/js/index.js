@@ -86,7 +86,8 @@ var login=function() {
 		{
 			var route=localStorage.route;
 			localStorage.route=null;
-			ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
+			ref.close();
+			login();
 			
 		}		
 			if (event.url.indexOf('Blrb/Create') != -1) {
