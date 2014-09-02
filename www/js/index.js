@@ -79,8 +79,8 @@ var login=function() {
 var channel=function() {
 					var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
 	  					ref.addEventListener('loadstart', function(event) {
-			//alert('stop: ' + event.url);
-
+			alert('stop: ' + event.url);
+alert(event.url.split("/").length);
 			if (event.url.indexOf('Blrb/Create') != -1) {
 				ref.close();
 
