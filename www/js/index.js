@@ -23,6 +23,11 @@ var app = {
 		var route=localStorage.route;
 		alert("route: "+route);
 		this.bindEvents();
+		
+		if(route='default')
+		{
+			login();
+		}
 	},
 	// Bind Event Listeners
 	//
