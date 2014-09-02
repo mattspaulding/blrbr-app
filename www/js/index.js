@@ -91,6 +91,16 @@ var channel=function() {
 
 				window.location = "index.html";
 			}
+	if (event.url.indexOf('/') == 0) {
+				ref.close();
+
+				window.location = "index.html";
+			}
+	if (event.url.indexOf('/') == 1) {
+				ref.close();
+
+				window.location = "index.html";
+			}
 		
 		});
 		ref.addEventListener('loaderror', function(event) {
