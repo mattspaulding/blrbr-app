@@ -16,12 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
+	
 var app = {
 	// Application Constructor
 	initialize : function() {
-		this.bindEvents();
-
+			this.bindEvents();
+			
+			
+		alert(localStorage.route);
+		if(localStorage.route=="blrb/me")
+		{
+			var route=localStorage.route;
+			localStorage.route=null;
+			login();
+			
+		}
+	
 	},
 	// Bind Event Listeners
 	//
@@ -39,21 +49,21 @@ var app = {
 
 		//var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
 		//var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
-		//var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
+	        //var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
 
 		// //ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
 		// ref.addEventListener('loadstart', function(event) {
-		// //alert('stop: ' + event.url);
-		//
-		// if (event.url.indexOf('Blrb/Create') != -1) {
-		// ref.close();
-		//
-		// window.location = "create.html?" + event.url.split('?')[1];
-		// }
-		//
+			// //alert('stop: ' + event.url);
+// 
+			// if (event.url.indexOf('Blrb/Create') != -1) {
+				// ref.close();
+// 
+				// window.location = "create.html?" + event.url.split('?')[1];
+			// }
+// 		
 		// });
 		// ref.addEventListener('loaderror', function(event) {
-		// alert('error: ' + event.message);
+			// alert('error: ' + event.message);
 		// });
 		// ref.addEventListener('exit', function(event) {
 		// });
@@ -74,65 +84,58 @@ var app = {
 	}
 };
 
-var login = function() {
-	var ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
-	ref.addEventListener('loadstart', function(event) {
-		alert("hey");
-
-		alert(localstorage.route);
-		if (localstorage.route == "blrb/me") {
-			var route = localstorage.route;
-			localstorage.route = null;
-			ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
-
-		}
-
-		if (event.url.indexOf('Blrb/Create') != -1) {
-			ref.close();
+var login=function() {
+					var ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
+	  							ref.addEventListener('loadstart', function(event) {
+	  				alert("hey");			
+			if (event.url.indexOf('Blrb/Create') != -1) {
+				ref.close();
 			window.location = "create.html?" + event.url.split('?')[1];
-		}
+			}
+		
+var segs=event.url.split("/");
+	if (segs[3] == "") {
+				ref.close();
+				window.location = "index.html";
+			}
+	
+		
+		});
+		ref.addEventListener('loaderror', function(event) {
+			alert('error: ' + event.message);
+		});
+		ref.addEventListener('exit', function(event) {
+		});
 
-		var segs = event.url.split("/");
-		if (segs[3] == "") {
-			ref.close();
-			window.location = "index.html";
-		}
+	  				};
 
-	});
-	ref.addEventListener('loaderror', function(event) {
-		alert('error: ' + event.message);
-	});
-	ref.addEventListener('exit', function(event) {
-	});
+var channel=function() {
+					var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
+	  					ref.addEventListener('loadstart', function(event) {
+			alert('stop: ' + event.url);
+alert(event.url.split("/").length);
 
-};
+alert(segs[3]);
 
-var channel = function() {
-	var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
-	ref.addEventListener('loadstart', function(event) {
-		alert('stop: ' + event.url);
-		alert(event.url.split("/").length);
+			if (event.url.indexOf('Blrb/Create') != -1) {
+				ref.close();
 
-		alert(segs[3]);
+				window.location = "create.html?" + event.url.split('?')[1];
+			}
+		
+var segs=event.url.split("/");
+	if (segs[3] == "") {
+				ref.close();
 
-		if (event.url.indexOf('Blrb/Create') != -1) {
-			ref.close();
+				window.location = "index.html";
+			}
+	
+		
+		});
+		ref.addEventListener('loaderror', function(event) {
+			alert('error: ' + event.message);
+		});
+		ref.addEventListener('exit', function(event) {
+		});
 
-			window.location = "create.html?" + event.url.split('?')[1];
-		}
-
-		var segs = event.url.split("/");
-		if (segs[3] == "") {
-			ref.close();
-
-			window.location = "index.html";
-		}
-
-	});
-	ref.addEventListener('loaderror', function(event) {
-		alert('error: ' + event.message);
-	});
-	ref.addEventListener('exit', function(event) {
-	});
-
-};
+	  				};
