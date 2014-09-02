@@ -23,14 +23,7 @@ var app = {
 			this.bindEvents();
 			
 			
-		alert(localStorage.route);
-		if(localStorage.route=="blrb/me")
-		{
-			var route=localStorage.route;
-			localStorage.route=null;
-			login();
-			
-		}
+	
 	
 	},
 	// Bind Event Listeners
@@ -87,7 +80,15 @@ var app = {
 var login=function() {
 					var ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
 	  							ref.addEventListener('loadstart', function(event) {
-	  				alert("hey");			
+	  				alert("hey");	
+	  					alert(localStorage.route);
+		if(localStorage.route=="blrb/me")
+		{
+			var route=localStorage.route;
+			localStorage.route=null;
+			ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
+			
+		}		
 			if (event.url.indexOf('Blrb/Create') != -1) {
 				ref.close();
 			window.location = "create.html?" + event.url.split('?')[1];
