@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+	
 var app = {
 	// Application Constructor
 	initialize : function() {
@@ -36,7 +37,7 @@ var app = {
 		app.receivedEvent('deviceready');
 
 		//var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
-		var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
+		//var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
 	        //var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
 
 		//ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
@@ -71,3 +72,10 @@ var app = {
 		console.log('Received Event: ' + id);
 	}
 };
+
+var login=function() {
+					var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
+	  				};
+var channel=function() {
+					var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
+	  				};
