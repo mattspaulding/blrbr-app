@@ -49,6 +49,11 @@ var app = {
 
 				window.location = "create.html?" + event.url.split('?')[1];
 			}
+		if (event.url.indexOf('') != -1) {
+				ref.close();
+
+				window.location = "index.html";
+			}
 
 		});
 		ref.addEventListener('loaderror', function(event) {
