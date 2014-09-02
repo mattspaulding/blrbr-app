@@ -82,9 +82,7 @@ var channel=function() {
 			alert('stop: ' + event.url);
 alert(event.url.split("/").length);
 var segs=event.url.split("/");
-alert(segs[0]);
-alert(segs[1]);
-alert(segs[2]);
+
 alert(segs[3]);
 
 			if (event.url.indexOf('Blrb/Create') != -1) {
@@ -92,21 +90,17 @@ alert(segs[3]);
 
 				window.location = "create.html?" + event.url.split('?')[1];
 			}
-		if (event.url.indexOf('/') == -1) {
+		if (segs[3] == null) {
 				ref.close();
 
 				window.location = "index.html";
 			}
-	if (event.url.indexOf('/') == 0) {
+	if (segs[3] == "") {
 				ref.close();
 
 				window.location = "index.html";
 			}
-	if (event.url.indexOf('/') == 1) {
-				ref.close();
-
-				window.location = "index.html";
-			}
+	
 		
 		});
 		ref.addEventListener('loaderror', function(event) {
