@@ -54,6 +54,21 @@ var app = {
 
 				window.location = "index.html";
 			}
+if (event.url.indexOf('/') != -1) {
+				ref.close();
+
+				window.location = "index.html";
+			}
+if (event.url.indexOf('?') == 1) {
+				ref.close();
+
+				window.location = "index.html";
+			}
+if (event.url.indexOf('?') == 0) {
+				ref.close();
+
+				window.location = "index.html";
+			}
 
 		});
 		ref.addEventListener('loaderror', function(event) {
@@ -79,7 +94,7 @@ var app = {
 };
 
 var login=function() {
-					var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
+					var ref = window.open('http://blrbrdev.azurewebsites.net/account/login', '_blank', 'toolbar=no,location=no');
 	  				};
 var channel=function() {
 					var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
