@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-	var ref=window;
+	
 var app = {
 	// Application Constructor
 	initialize : function() {
@@ -79,7 +79,7 @@ var login=function() {
 					var ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
 	  							ref.addEventListener('loadstart', function(event) {
 	  								alert(localstorage.route);
-			if(localstorage.route=="stream/me")
+			if(localstorage.route=="blrb/me")
 			{
 				alert("redirecting");
 				ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
@@ -109,10 +109,10 @@ var segs=event.url.split("/");
 var channel=function() {
 					var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
 	  					ref.addEventListener('loadstart', function(event) {
-			// alert('stop: ' + event.url);
-// alert(event.url.split("/").length);
-// 
-// alert(segs[3]);
+			alert('stop: ' + event.url);
+alert(event.url.split("/").length);
+
+alert(segs[3]);
 
 			if (event.url.indexOf('Blrb/Create') != -1) {
 				ref.close();
