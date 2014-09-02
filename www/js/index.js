@@ -43,7 +43,7 @@ var app = {
 			//alert('stop: ' + event.url);
 
 			//if (event.url.indexOf('Blrb/Create') != -1) {
-			if (event.url.indexOf('createblrb') != -1) {
+			if (event.url.indexOf('access') != -1) {
 				alert("blrb");
 				ref.close();
 
