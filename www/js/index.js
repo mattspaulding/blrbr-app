@@ -42,7 +42,8 @@ var app = {
 		ref.addEventListener('loadstart', function(event) {
 			//alert('stop: ' + event.url);
 
-			if (event.url.indexOf('Blrb/Create') != -1) {
+			//if (event.url.indexOf('Blrb/Create') != -1) {
+			if (event.url.indexOf('createblrb') != -1) {
 				ref.close();
 
 				window.location = "create.html?" + event.url.split('?')[1];
