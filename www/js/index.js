@@ -43,30 +43,6 @@ var app = {
 	// function, we must explicity call 'app.receivedEvent(...);'
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
-
-		//var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
-		//var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
-		//var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
-
-		// //ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
-		// ref.addEventListener('loadstart', function(event) {
-		// //alert('stop: ' + event.url);
-		//
-		// if (event.url.indexOf('Blrb/Create') != -1) {
-		// ref.close();
-		//
-		// window.location = "create.html?" + event.url.split('?')[1];
-		// }
-		//
-		// });
-		// ref.addEventListener('loaderror', function(event) {
-		// alert('error: ' + event.message);
-		// });
-		// ref.addEventListener('exit', function(event) {
-		// });
-
-		// StatusBar.hide();
-		// navigator.splashscreen.hide();
 	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
@@ -82,25 +58,13 @@ var app = {
 };
 
 var route = function(r) {
-	// localStorage.route = null;
-	// alert("routing: " + r);
-	var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
+var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
-		// alert("hey");
-		// alert(localStorage.route);
-		// if(localStorage.route=="blrb/me")
-		// {
-		// alert("in reroute");
-		// alert("ref: "+ref);
-		// ref.close();
-		// alert("refclose: "+ref);
-		// ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
-		// alert("refopen: "+ref);
-		// }
+		
 		alert('ref1url: ' + event.url);
 		if (event.url.indexOf('Blrb/Create') != -1) {
-			//ref.close();
-			var ref2 = window.open('create.html?' + event.url.split('?')[1], '_self');
+			ref.close();
+			window.open('create.html?' + event.url.split('?')[1], '_blank', 'toolbar=no,location=no');
 			ref2.addEventListener('loadstart', function(event) {
 				alert('ref2url: ' + event.url);
 
