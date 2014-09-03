@@ -16,17 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-	
+
 var app = {
 	// Application Constructor
 	initialize : function() {
-			this.bindEvents();
-			
-			var ro=localStorage.route;
-			alert("ro: "+ro);
+		this.bindEvents();
+
+		var ro = localStorage.route;
+		alert("ro: " + ro);
+		if (ro != null) {
 			route(ro);
-	
-	
+		}
+
 	},
 	// Bind Event Listeners
 	//
@@ -44,21 +45,21 @@ var app = {
 
 		//var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
 		//var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
-	        //var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
+		//var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
 
 		// //ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
 		// ref.addEventListener('loadstart', function(event) {
-			// //alert('stop: ' + event.url);
-// 
-			// if (event.url.indexOf('Blrb/Create') != -1) {
-				// ref.close();
-// 
-				// window.location = "create.html?" + event.url.split('?')[1];
-			// }
-// 		
+		// //alert('stop: ' + event.url);
+		//
+		// if (event.url.indexOf('Blrb/Create') != -1) {
+		// ref.close();
+		//
+		// window.location = "create.html?" + event.url.split('?')[1];
+		// }
+		//
 		// });
 		// ref.addEventListener('loaderror', function(event) {
-			// alert('error: ' + event.message);
+		// alert('error: ' + event.message);
 		// });
 		// ref.addEventListener('exit', function(event) {
 		// });
@@ -79,66 +80,63 @@ var app = {
 	}
 };
 
-var route=function(r) {
-	localStorage.route=null;
-	
-	
-					var ref = window.open('http://blrbrdev.azurewebsites.net/' +r, '_blank', 'toolbar=no,location=no');
-	  							ref.addEventListener('loadstart', function(event) {
-	  				alert("hey");	
-	  					alert(localStorage.route);
+var route = function(r) {
+	localStorage.route = null;
+
+	var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
+	ref.addEventListener('loadstart', function(event) {
+		alert("hey");
+		alert(localStorage.route);
 		// if(localStorage.route=="blrb/me")
 		// {
-			// route(localStorage.route);
-		// }		
-			if (event.url.indexOf('Blrb/Create') != -1) {
-				ref.close();
+		// route(localStorage.route);
+		// }
+		if (event.url.indexOf('Blrb/Create') != -1) {
+			ref.close();
 			window.location = "create.html?" + event.url.split('?')[1];
-			}
-		
-var segs=event.url.split("/");
-	if (segs[3] == "") {
-				ref.close();
-				window.location = "index.html";
-			}
-	
-		
-		});
-		ref.addEventListener('loaderror', function(event) {
-			alert('error: ' + event.message);
-		});
-		ref.addEventListener('exit', function(event) {
-		});
+		}
 
-	  				};
+		var segs = event.url.split("/");
+		if (segs[3] == "") {
+			ref.close();
+			window.location = "index.html";
+		}
 
-var channel=function() {
-					var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
-	  					ref.addEventListener('loadstart', function(event) {
-			alert('stop: ' + event.url);
-alert(event.url.split("/").length);
+	});
+	ref.addEventListener('loaderror', function(event) {
+		alert('error: ' + event.message);
+	});
+	ref.addEventListener('exit', function(event) {
+	});
 
-alert(segs[3]);
+};
 
-			if (event.url.indexOf('Blrb/Create') != -1) {
-				ref.close();
+var channel = function() {
+	var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
+	ref.addEventListener('loadstart', function(event) {
+		alert('stop: ' + event.url);
+		alert(event.url.split("/").length);
 
-				window.location = "create.html?" + event.url.split('?')[1];
-			}
-		
-var segs=event.url.split("/");
-	if (segs[3] == "") {
-				ref.close();
+		alert(segs[3]);
 
-				window.location = "index.html";
-			}
-	
-		
-		});
-		ref.addEventListener('loaderror', function(event) {
-			alert('error: ' + event.message);
-		});
-		ref.addEventListener('exit', function(event) {
-		});
+		if (event.url.indexOf('Blrb/Create') != -1) {
+			ref.close();
 
-	  				};
+			window.location = "create.html?" + event.url.split('?')[1];
+		}
+
+		var segs = event.url.split("/");
+		if (segs[3] == "") {
+			ref.close();
+
+			window.location = "index.html";
+		}
+
+	});
+	ref.addEventListener('loaderror', function(event) {
+		alert('error: ' + event.message);
+	});
+	ref.addEventListener('exit', function(event) {
+	});
+
+};
