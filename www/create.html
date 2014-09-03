@@ -59,8 +59,7 @@
 				});
 
 				$("#backBtn").click(function() {
-					localStorage.route = "blrb/me";
-					window.location="index.html";
+					route('blrb/me');					window.location = "index.html";
 					//window.location = "index.html";
 				});
 
@@ -231,14 +230,13 @@
 				params.channel = window.channel;
 				params.text = $("#text_textarea").val();
 				params.username = window.username;
-			params.isTweet = $('#twitter-toggle').prop('checked'); 
-					debugger;
+				params.isTweet = $('#twitter-toggle').prop('checked'); debugger;
 				options.params = params;
 				var ft = new FileTransfer();
 				//ft.upload(audioURI, "http://blrbr.co/Blrb/UploadAudio", win, fail, options);
 				//ft.upload(audioURI, "http://localhost:49379/Blrb/UploadAudio", win, fail, options);
-			ft.upload(audioURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail, options);
-			$("#recordBtn").hide();
+				ft.upload(audioURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail, options);
+				$("#recordBtn").hide();
 				$("#stopBtn").hide();
 				$("#playBtn").hide();
 				$("#blrbBtn").hide();
@@ -248,9 +246,9 @@
 			}
 
 			function win(r) {
-			  //alert("Code = " + r.responseCode);
-    //alert("Response = " + r.response);
- 	//app.initialize();
+				//alert("Code = " + r.responseCode);
+				//alert("Response = " + r.response);
+				//app.initialize();
 				window.location = "index.html";
 			}
 
@@ -284,16 +282,23 @@
 			</div>
 		</div>
 		<div style="text-align: center; padding-top: 20px;">
-			<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>												
+			<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>
 			<br>
 			<br>
 			<div >
-<input type="radio" name="radioGroup" value="true" id="twitter-toggle" checked>tweet<br>
-<input type="radio" name="radioGroup" value="false">no tweet
+				<input type="radio" name="radioGroup" value="true" id="twitter-toggle" checked>
+				tweet
+				<br>
+				<input type="radio" name="radioGroup" value="false">
+				no tweet
+
+			</div>
 
 		</div>
-		
-		</div>
-
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript">
+			app.initialize();
+		</script>
 	</body>
 </html>
