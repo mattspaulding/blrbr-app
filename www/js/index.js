@@ -78,6 +78,58 @@ var app = {
 };
 
 var login=function() {
-	localStorage.route="blrb/me";
-	window.location="route.html";
-			};
+					var ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
+	  							ref.addEventListener('loadstart', function(event) {
+	  				alert("hey");	
+	  						
+			if (event.url.indexOf('Blrb/Create') != -1) {
+				ref.close();
+			window.location = "create.html?" + event.url.split('?')[1];
+			}
+		
+var segs=event.url.split("/");
+	if (segs[3] == "") {
+				ref.close();
+				window.location = "index.html";
+			}
+	
+		
+		});
+		ref.addEventListener('loaderror', function(event) {
+			alert('error: ' + event.message);
+		});
+		ref.addEventListener('exit', function(event) {
+		});
+
+	  				};
+
+var channel=function() {
+					var ref = window.open('http://blrbrdev.azurewebsites.net/firstblrbever', '_blank', 'toolbar=no,location=no');
+	  					ref.addEventListener('loadstart', function(event) {
+			alert('stop: ' + event.url);
+alert(event.url.split("/").length);
+
+alert(segs[3]);
+
+			if (event.url.indexOf('Blrb/Create') != -1) {
+				ref.close();
+
+				window.location = "create.html?" + event.url.split('?')[1];
+			}
+		
+var segs=event.url.split("/");
+	if (segs[3] == "") {
+				ref.close();
+
+				window.location = "index.html";
+			}
+	
+		
+		});
+		ref.addEventListener('loaderror', function(event) {
+			alert('error: ' + event.message);
+		});
+		ref.addEventListener('exit', function(event) {
+		});
+
+	  				};
