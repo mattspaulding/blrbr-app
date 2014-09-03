@@ -22,7 +22,9 @@ var app = {
 	initialize : function() {
 			this.bindEvents();
 			
-			
+			var ro=localStorage.route;
+			alert("ro: "+ro);
+			route(ro);
 	
 	
 	},
@@ -77,39 +79,36 @@ var app = {
 	}
 };
 
-var login=function() {
-	localStorage.route="blrb/me";
-	window.location="route.html";
+var route=function(r) {
+	localStorage.route=null;
 	
-					// var ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
-	  							// ref.addEventListener('loadstart', function(event) {
-	  				// alert("hey");	
-	  					// alert(localStorage.route);
+	
+					var ref = window.open('http://blrbrdev.azurewebsites.net/' +r, '_blank', 'toolbar=no,location=no');
+	  							ref.addEventListener('loadstart', function(event) {
+	  				alert("hey");	
+	  					alert(localStorage.route);
 		// if(localStorage.route=="blrb/me")
 		// {
-			// var route=localStorage.route;
-			// localStorage.route=null;
-			// login();
-// 			
+			// route(localStorage.route);
 		// }		
-			// if (event.url.indexOf('Blrb/Create') != -1) {
-				// ref.close();
-			// window.location = "create.html?" + event.url.split('?')[1];
-			// }
-// 		
-// var segs=event.url.split("/");
-	// if (segs[3] == "") {
-				// ref.close();
-				// window.location = "index.html";
-			// }
-// 	
-// 		
-		// });
-		// ref.addEventListener('loaderror', function(event) {
-			// alert('error: ' + event.message);
-		// });
-		// ref.addEventListener('exit', function(event) {
-		// });
+			if (event.url.indexOf('Blrb/Create') != -1) {
+				ref.close();
+			window.location = "create.html?" + event.url.split('?')[1];
+			}
+		
+var segs=event.url.split("/");
+	if (segs[3] == "") {
+				ref.close();
+				window.location = "index.html";
+			}
+	
+		
+		});
+		ref.addEventListener('loaderror', function(event) {
+			alert('error: ' + event.message);
+		});
+		ref.addEventListener('exit', function(event) {
+		});
 
 	  				};
 
