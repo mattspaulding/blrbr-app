@@ -28,40 +28,7 @@ under the License.
 		<title>blrbr</title>
 	</head>
 	<body>
-		<div id="homePage" style="text-align: center;">
-			<br>
-			<img src="img/blrbrfish_logo_nobubble.png" width="90%"/>
-			<br>
-			<br>
-			<img src="img/blrbr_logo_50.png"/>
-			<div id="deviceready">
-				<p class="event listening">
-					loading
-				</p>
-				<div class="event received">
-					<br>
-					<div>
-						no need to login to
-					</div>
-					<div class="full-width-button" onclick="route('firstblrbever')">
-						<div>
-							browse channels <span class="glyphicon glyphicon-chevron-right"></span>
-						</div>
-					</div>
-					<br>
-					<div>
-						login with twitter to
-					</div>
-					<div class="full-width-button" onclick="route('account/login')" style="height:500px">
-						<div>
-							listen to my stream <span class="glyphicon glyphicon-chevron-right"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="createPage" class="hidden">
+			<div id="createPage">
 			<div id="buttonGroup">
 				<button class="btn btn-default btn-lg" style="float:right" name="blrbBtn" id="blrbBtn">
 					<span class="glyphicon glyphicon-cloud-upload"></span> blrb
@@ -100,6 +67,40 @@ under the License.
 
 		</div>
 
+		<div id="homePage" style="text-align: center;">
+			<br>
+			<img src="img/blrbrfish_logo_nobubble.png" width="90%"/>
+			<br>
+			<br>
+			<img src="img/blrbr_logo_50.png"/>
+			<div id="deviceready">
+				<p class="event listening">
+					loading
+				</p>
+				<div class="event received">
+					<br>
+					<div>
+						no need to login to 3
+					</div>
+					<div class="full-width-button" onclick="route('firstblrbever')">
+						<div>
+							browse channels <span class="glyphicon glyphicon-chevron-right"></span>
+						</div>
+					</div>
+					<br>
+					<div>
+						login with twitter to
+					</div>
+					<div class="full-width-button" onclick="route('account/login')" style="height:500px">
+						<div>
+							listen to my stream <span class="glyphicon glyphicon-chevron-right"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/deviceCheck.js"></script>

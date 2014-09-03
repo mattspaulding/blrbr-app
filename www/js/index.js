@@ -61,7 +61,7 @@ var route = function(r) {
 alert("route: "+r);
 	ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
-
+navigator.notification.activityStart("Please Wait", "Its loading....");
 		alert('refurl: ' + event.url);
 
 		if (event.url.indexOf('Blrb/Create') != -1) {
@@ -90,6 +90,12 @@ alert("route: "+r);
 		// }
 
 	});
+	
+	Ref.addEventListener('loadstop',function(event) {
+		  navigator.notification.activityStop();
+	});
+	
+	 navigator.notification.activityStop();
 	ref.addEventListener('loaderror', function(event) {
 		alert('error: ' + event.message);
 	});
