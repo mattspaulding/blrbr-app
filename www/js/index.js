@@ -16,11 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var ref = null;
 
 var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
+		alert(ref);
+		if (ref!=null) {
+			ref.show();
+		}
 		//debugger;
 		// var ro = localStorage.route;
 		// alert("ro: " + ro);
@@ -84,7 +89,7 @@ var app = {
 var route = function(r) {
 	// localStorage.route = null;
 	// alert("routing: " + r);
-	var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
+	ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
 		// alert("hey");
 		// alert(localStorage.route);
@@ -111,12 +116,12 @@ var route = function(r) {
 
 		// alert("url: " + event.url);
 		// var segs = event.url.split("/");
-// 
+		//
 		// alert("segs2: " + segs[2]);
 		// alert("segs3: " + segs[3]);
 		// if (segs[3] == "") {
-			// ref.close();
-			// window.location = "index.html";
+		// ref.close();
+		// window.location = "index.html";
 		// }
 
 	});
