@@ -104,9 +104,10 @@ var route = function(r) {
 		}
 
 alert("url: "+event.url);
+	var segs = event.url.split("/");
+	
 alert("segs2: "+segs[2]);
 alert("segs3: "+segs[3]);
-		var segs = event.url.split("/");
 		if (segs[3] == "") {
 			ref.close();
 			window.location = "index.html";
