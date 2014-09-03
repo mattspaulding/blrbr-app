@@ -17,10 +17,10 @@
  * under the License.
  */
 
-
+var ref=null;
 function gotoRoute(r) {
 	 debugger;
-	var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
+    ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
 		debugger;
 		alert("in gotroute: " + r);
