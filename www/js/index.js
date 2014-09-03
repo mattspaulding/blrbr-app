@@ -104,7 +104,7 @@ var route = function(r) {
 		}
 
 		if (event.url == "http://blrbrdev.azurewebsites.net/") {
-			alert("going home");
+			//alert("going home");
 			ref.close();
 			window.location = "index.html";
 		}
