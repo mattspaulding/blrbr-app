@@ -82,8 +82,8 @@ var app = {
 };
 
 var route = function(r) {
-	localStorage.route = null;
-	alert("routing: " + r);
+	// localStorage.route = null;
+	// alert("routing: " + r);
 	var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
 		// alert("hey");
