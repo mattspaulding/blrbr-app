@@ -17,10 +17,9 @@
  * under the License.
  */
 
-var ref=null;
-function gotoRoute(r) {
+var gotoRoute=function(r) {
 	 debugger;
-    ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
+    var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
 		debugger;
 		alert("in gotroute: " + r);
@@ -51,4 +50,4 @@ debugger;
 	var route = localStorage.route;
 	localStorage.route = null;
 
-	gotoRoute(route);
+	var web= gotoRoute(route);
