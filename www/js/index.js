@@ -59,7 +59,7 @@ var app = {
 
 var route = function(r) {
 	
-	var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
+	ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
 
 		alert('refurl: ' + event.url);
@@ -70,7 +70,7 @@ var route = function(r) {
 		}
 		if (event.url == "http://blrbrdev.azurewebsites.net/") {
 			ref.close();
-			window.open('index.html', '_self');
+			//window.open('index.html', '_self');
 		}
 
 	});
