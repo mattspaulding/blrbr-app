@@ -43,27 +43,46 @@ var app = {
 	// function, we must explicity call 'app.receivedEvent(...);'
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
+		var ref = window.open('index.html', '_self');
+		ref.addEventListener('loadstart', function(event) {
+			// alert("hey");
+			// alert(localStorage.route);
+			// if(localStorage.route=="blrb/me")
+			// {
+			// alert("in reroute");
+			// alert("ref: "+ref);
+			// ref.close();
+			// alert("refclose: "+ref);
+			// ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
+			// alert("refopen: "+ref);
+			// }
+			alert('url: ' + event.url);
+			if (event.url.indexOf('Blrb/Create') != -1) {
+				//ref.close();
+				ref = window.open('create.html?' + event.url.split('?')[1], '_self');
+			}
 
-		//var ref = window.open('http://blrbr.co', '_blank', 'toolbar=no,location=no');
-		//var ref = window.open('http://blrbrdev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
-		//var ref = window.open('http://blrbrspadev.azurewebsites.net', '_blank', 'toolbar=no,location=no');
+			if (event.url == "http://blrbrdev.azurewebsites.net/") {
+				//alert("going home");
+				ref = window.open('index.html', '_self');
+			}
 
-		// //ref.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
-		// ref.addEventListener('loadstart', function(event) {
-		// //alert('stop: ' + event.url);
-		//
-		// if (event.url.indexOf('Blrb/Create') != -1) {
-		// ref.close();
-		//
-		// window.location = "create.html?" + event.url.split('?')[1];
-		// }
-		//
-		// });
-		// ref.addEventListener('loaderror', function(event) {
-		// alert('error: ' + event.message);
-		// });
-		// ref.addEventListener('exit', function(event) {
-		// });
+			// alert("url: " + event.url);
+			// var segs = event.url.split("/");
+			//
+			// alert("segs2: " + segs[2]);
+			// alert("segs3: " + segs[3]);
+			// if (segs[3] == "") {
+			// ref.close();
+			// window.location = "index.html";
+			// }
+
+		});
+		ref.addEventListener('loaderror', function(event) {
+			alert('error: ' + event.message);
+		});
+		ref.addEventListener('exit', function(event) {
+		});
 
 		// StatusBar.hide();
 		// navigator.splashscreen.hide();
@@ -100,22 +119,22 @@ var route = function(r) {
 
 		if (event.url.indexOf('Blrb/Create') != -1) {
 			//ref.close();
-		ref=window.open('create.html?' + event.url.split('?')[1],'_self');
+			ref = window.open('create.html?' + event.url.split('?')[1], '_self');
 		}
 
 		if (event.url == "http://blrbrdev.azurewebsites.net/") {
 			//alert("going home");
-	ref=window.open('index.html','_self');
-			}
+			ref = window.open('index.html', '_self');
+		}
 
 		// alert("url: " + event.url);
 		// var segs = event.url.split("/");
-// 
+		//
 		// alert("segs2: " + segs[2]);
 		// alert("segs3: " + segs[3]);
 		// if (segs[3] == "") {
-			// ref.close();
-			// window.location = "index.html";
+		// ref.close();
+		// window.location = "index.html";
 		// }
 
 	});
