@@ -21,13 +21,13 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-debugger;
-		var ro = localStorage.route;
-		alert("ro: " + ro);
-		if (ro != "null") {
-			alert("in ro");
-			route(ro);
-		}
+//debugger;
+		// var ro = localStorage.route;
+		// alert("ro: " + ro);
+		// if (ro != "null") {
+			// alert("in ro");
+			// route(ro);
+		// }
 
 	},
 	// Bind Event Listeners
@@ -88,10 +88,15 @@ var route = function(r) {
 	ref.addEventListener('loadstart', function(event) {
 		alert("hey");
 		alert(localStorage.route);
-		// if(localStorage.route=="blrb/me")
-		// {
-		// route(localStorage.route);
-		// }
+		if(localStorage.route=="blrb/me")
+		{
+			alert("in reroute");
+			alert("ref: "+ref);
+			ref.close();
+			alert("refclose: "+ref);
+			ref = window.open('http://blrbrdev.azurewebsites.net/blrb/me', '_blank', 'toolbar=no,location=no');
+		alert("refopen: "+ref);
+			}
 		if (event.url.indexOf('Blrb/Create') != -1) {
 			ref.close();
 			window.location = "create.html?" + event.url.split('?')[1];
