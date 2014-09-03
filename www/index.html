@@ -28,7 +28,7 @@ under the License.
 		<title>blrbr</title>
 	</head>
 	<body>
-		<div style="text-align: center;">
+		<div id="homePage" style="text-align: center;">
 			<br>
 			<img src="img/blrbrfish_logo_nobubble.png" width="90%"/>
 			<br>
@@ -60,8 +60,299 @@ under the License.
 				</div>
 			</div>
 		</div>
+
+		<div id="createPage" class="hide">
+			<div id="buttonGroup">
+				<button class="btn btn-default btn-lg" style="float:right" name="blrbBtn" id="blrbBtn">
+					<span class="glyphicon glyphicon-cloud-upload"></span> blrb
+				</button>
+				<button class="btn btn-default btn-lg" style="float:left" name="backBtn" id="backBtn">
+					<span class="glyphicon glyphicon-hand-left"></span> back
+				</button>
+
+				<div style="text-align: center; padding-top: 100px;">
+					<button class="btn btn-default btn-lg" name="recordBtn" id="recordBtn">
+						<span class="glyphicon glyphicon-record"></span> record
+					</button>
+					<button class="btn btn-default btn-lg" name="stopBtn" id="stopBtn">
+						<span class="glyphicon glyphicon-stop"></span> stop
+					</button>
+					<button class="btn btn-default btn-lg" name="playBtn" id="playBtn">
+						<span class="glyphicon glyphicon-play"></span> play
+					</button>
+					<p id="audio_position" style="padding-top: 40px;"></p>
+				</div>
+			</div>
+			<div style="text-align: center; padding-top: 20px;">
+				<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>
+				<br>
+				<br>
+				<div >
+					<input type="radio" name="radioGroup" value="true" id="twitter-toggle" checked>
+					tweet
+					<br>
+					<input type="radio" name="radioGroup" value="false">
+					no tweet
+
+				</div>
+
+			</div>
+
+		</div>
+
 		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/deviceCheck.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
+
+		<script type="text/javascript">
+			var deviceready = false;
+			var mediaVar = null;
+			var status = null;
+			var recordFileName = "recording.amr";
+
+			function onBodyLoad() {
+				document.addEventListener("deviceready", onDeviceReady, false);
+				deviceready = true;
+				if (phoneCheck.ios != null) {
+					recordFileName = "recording.wav";
+				}
+			}
+
+
+			$(document).ready(function() {
+				$("#stopBtn").hide();
+				$("#playBtn").hide();
+				$("#blrbBtn").hide();
+
+				try {
+					var href = decodeURIComponent(window.location.href);
+					var p = href.split('username=')[1];
+					var q = p.split('&channel=')[1];
+					window.username = p.split('&channel=')[0];
+					window.channel = q.split('&text=')[0];
+					if (window.channel == " ") {
+						window.channel = "";
+					}
+					window.text = q.split('&text=')[1];
+					if (window.text == " " || window.text == "  ") {
+						window.text = "";
+					}
+
+					$("#text_textarea").val(window.text);
+				} catch(err) {
+					//alert("data transfer error: " + err);
+					//window.location="index.html";
+
+				}
+
+				//validation to check if device is ready is skipped
+
+				$("#recordBtn").click(function() {
+					record();
+				});
+
+				$("#backBtn").click(function() {
+					route('blrb/me');
+					//window.location = "index.html";
+				});
+
+				$("#playBtn").click(function() {
+					play();
+				});
+
+				$("#stopBtn").click(function() {
+					stop();
+				});
+				$("#blrbBtn").click(function() {
+					uploadVoice();
+				});
+			});
+			// Set audio position
+			//
+			function setAudioPosition(position) {
+			}
+
+			function record() {
+				createMedia(function() {
+					status = "recording";
+					mediaVar.startRecord();
+					$("#recordBtn").hide();
+					$("#stopBtn").show();
+					$("#playBtn").hide();
+					$("#blrbBtn").hide();
+
+					// Stop recording after 6 sec
+					var recTime = 0;
+					setAudioPosition(recTime + " sec");
+					var recInterval = setInterval(function() {
+						if (status == 'recording') {
+							recTime = recTime + 1;
+							setAudioPosition(recTime + " sec");
+						}
+						if (recTime >= 6 || status != 'recording') {
+							clearInterval(recInterval);
+							stop();
+						}
+					}, 1000);
+				}, onStatusChange);
+			}
+
+			function createMedia(onMediaCreated, mediaStatusCallback) {
+				if (mediaVar != null) {
+					onMediaCreated();
+					return;
+				}
+
+				if ( typeof mediaStatusCallback == 'undefined')
+					mediaStatusCallback = null;
+				if (phoneCheck.ios != null) {
+					//first create the file
+					window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSystem) {
+						// save the file system for later access
+						fileSystem.root.getFile(recordFileName, {
+							create : true,
+							exclusive : false
+						}, function(fileEntry) {
+							mediaVar = new Media(fileEntry.fullPath, function() {
+								//alert("File " + recordFileName + " created at " + fileEntry.fullPath);
+								//alert("Media created successfully");
+								//uploadVoice();
+							}, null, mediaStatusCallback);
+							//of new Media
+							onMediaCreated();
+						}, onError);
+						//of getFile
+					}, onError);
+					//of requestFileSystem
+				} else//it's Android
+				{
+					mediaVar = new Media(recordFileName, function() {
+						//alert("Media created successfully: " + recordFileName);
+					}, onError, mediaStatusCallback);
+					onMediaCreated();
+				}
+			}
+
+			function stop() {
+				if (mediaVar == null)
+					return;
+
+				if (status == 'recording') {
+					mediaVar.stopRecord();
+
+					log("Recording stopped");
+				} else if (status == 'playing') {
+					mediaVar.stop();
+					log("Play stopped");
+				} else {
+					log("Nothing stopped");
+				}
+				$("#recordBtn").show();
+				$("#stopBtn").hide();
+				$("#playBtn").show();
+				$("#blrbBtn").show();
+				status = 'stopped';
+			}
+
+			function play() {
+				//playAudio("recording.amr");
+
+				var media = new Media(recordFileName, function() {
+					//alert( "Media Success" );
+				}, function() {
+					//alert("Media Failure, reason: " + err);
+				});
+
+				media.play();
+			}
+
+			function onStatusChange() {
+				if (arguments[0] == 4)//play stopped
+				{
+					$("#recordBtn").show();
+					$("#stopBtn").hide();
+					$("#playBtn").show();
+					$("#blrbBtn").show();
+				}
+			}
+
+			function onSuccess() {
+				//do nothing
+			}
+
+			function onError(err) {
+				if ( typeof err.message != 'undefined')
+					err = err.message;
+				//alert("Error : " + err.message);
+			}
+
+			function log(message) {
+				//alert(message);
+			}
+
+			function onDeviceReady() {
+
+			}
+
+			function uploadVoice() { debugger;
+				var audioURI = "mnt/sdcard/recording.amr";
+
+				var options = new FileUploadOptions();
+				options.fileKey = "file";
+				options.fileName = "recording.amr";
+				options.mimeType = "audio/amr";
+
+				if (phoneCheck.ios != null) {
+
+					//	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
+					//		var directoryReader = fs.root.createReader();
+					//		directoryReader.readEntries(function(entries) {
+					//			audioURI = "cdvfile://localhost/persistent/recording.wav";
+					//				audioURI = entries[1].toURI();
+					//	alert(audioURI);
+					//		});
+					//	});
+
+					audioURI = "cdvfile://localhost/temporary/recording.wav";
+					options.fileName = "recording.wav";
+					options.mimeType = "audio/wav";
+					options.chunkedMode = false;
+				}
+
+				var params = new Object();
+				params.channel = window.channel;
+				params.text = $("#text_textarea").val();
+				params.username = window.username;
+				params.isTweet = $('#twitter-toggle').prop('checked');
+				debugger;
+				options.params = params;
+				var ft = new FileTransfer();
+				//ft.upload(audioURI, "http://blrbr.co/Blrb/UploadAudio", win, fail, options);
+				//ft.upload(audioURI, "http://localhost:49379/Blrb/UploadAudio", win, fail, options);
+				ft.upload(audioURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail, options);
+				$("#recordBtn").hide();
+				$("#stopBtn").hide();
+				$("#playBtn").hide();
+				$("#blrbBtn").hide();
+				$("#text_textarea").hide();
+				document.getElementById('audio_position').innerHTML = "blrbing...";
+
+			}
+
+			function win(r) {
+				//alert("Code = " + r.responseCode);
+				//alert("Response = " + r.response);
+				//app.initialize();
+				window.location = "index.html";
+			}
+
+			function fail(error) {
+				//alert("blrb error: " + error.code);
+				window.location = "index.html";
+			}
+
+		</script>
 		<script type="text/javascript">
 			app.initialize();
 		</script>

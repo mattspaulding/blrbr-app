@@ -63,15 +63,31 @@ var route = function(r) {
 	ref.addEventListener('loadstart', function(event) {
 
 		alert('refurl: ' + event.url);
+
 		if (event.url.indexOf('Blrb/Create') != -1) {
-			window.open('create.html?' + event.url.split('?')[1], '_self');
+			$('#homePage').hide();
+			$('#createPage').show();
+			localStorage.stuff = event.url.split('?')[1];
+			//window.open('create.html?' + event.url.split('?')[1], '_self');
 			ref.close();
 
 		}
 		if (event.url == "http://blrbrdev.azurewebsites.net/") {
-			window.open('index.html', '_self');
-		ref.close();
-			}
+			$('#createPage').hide();
+			$('#homePage').show();
+			ref.close();
+		}
+
+		// if (event.url.indexOf('Blrb/Create') != -1) {
+		// localStorage.stuff=event.url.split('?')[1];
+		// window.open('create.html?' + event.url.split('?')[1], '_self');
+		// ref.close();
+		//
+		// }
+		// if (event.url == "http://blrbrdev.azurewebsites.net/") {
+		// window.open('index.html', '_self');
+		// ref.close();
+		// }
 
 	});
 	ref.addEventListener('loaderror', function(event) {
