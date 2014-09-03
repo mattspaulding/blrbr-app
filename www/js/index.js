@@ -99,7 +99,7 @@ var route = function(r) {
 		// }
 
 		if (event.url.indexOf('Blrb/Create') != -1) {
-			ref.close();
+			//ref.close();
 			window.location = "create.html?" + event.url.split('?')[1];
 		}
 
