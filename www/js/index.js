@@ -58,7 +58,7 @@ var app = {
 };
 
 var route = function(r) {
-
+alert("route: "+r);
 	ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
 
