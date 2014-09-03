@@ -16,16 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var ref = null;
 
 var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-		alert(ref);
-		if (ref!=null) {
-			ref.show();
-		}
 		//debugger;
 		// var ro = localStorage.route;
 		// alert("ro: " + ro);
@@ -89,7 +84,7 @@ var app = {
 var route = function(r) {
 	// localStorage.route = null;
 	// alert("routing: " + r);
-	ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
+	var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
 		// alert("hey");
 		// alert(localStorage.route);
@@ -105,23 +100,22 @@ var route = function(r) {
 
 		if (event.url.indexOf('Blrb/Create') != -1) {
 			//ref.close();
-			window.location = "create.html?" + event.url.split('?')[1];
+		ref=window.open('create.html?' + event.url.split('?')[1],'_self');
 		}
 
 		if (event.url == "http://blrbrdev.azurewebsites.net/") {
 			//alert("going home");
-			ref.close();
-			window.location = "index.html";
-		}
+	ref=window.open('index.html','_self');
+			}
 
 		// alert("url: " + event.url);
 		// var segs = event.url.split("/");
-		//
+// 
 		// alert("segs2: " + segs[2]);
 		// alert("segs3: " + segs[3]);
 		// if (segs[3] == "") {
-		// ref.close();
-		// window.location = "index.html";
+			// ref.close();
+			// window.location = "index.html";
 		// }
 
 	});
