@@ -20,6 +20,8 @@
 var app = {
 	// Application Constructor
 	initialize : function() {
+			$('#createPage').hide();
+		
 		this.bindEvents();
 		//debugger;
 		// var ro = localStorage.route;
@@ -58,11 +60,11 @@ var app = {
 };
 
 var route = function(r) {
-alert("route: "+r);
+	//alert("route: "+r);
 	ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
-navigator.notification.activityStart("Please Wait", "Its loading....");
-		alert('refurl: ' + event.url);
+		//navigator.notification.activityStart("Please Wait", "Its loading....");
+		//alert('refurl: ' + event.url);
 
 		if (event.url.indexOf('Blrb/Create') != -1) {
 			$('#homePage').hide();
@@ -90,17 +92,17 @@ navigator.notification.activityStart("Please Wait", "Its loading....");
 		// }
 
 	});
-	
-	ref.addEventListener('loadstop',function(event) {
-		  navigator.notification.activityStop();
+
+	ref.addEventListener('loadstop', function(event) {
+		//navigator.notification.activityStop();
 	});
-	
-	 navigator.notification.activityStop();
+
+	navigator.notification.activityStop();
 	ref.addEventListener('loaderror', function(event) {
 		alert('error: ' + event.message);
 	});
 	ref.addEventListener('exit', function(event) {
-		alert('exit: ' + event.message);
+		//alert('exit: ' + event.message);
 	});
 
 };
