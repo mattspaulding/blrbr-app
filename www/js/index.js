@@ -21,10 +21,11 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 		this.bindEvents();
-
+debugger;
 		var ro = localStorage.route;
 		alert("ro: " + ro);
-		if (ro != null) {
+		if (ro != "null") {
+			alert("in ro");
 			route(ro);
 		}
 
@@ -82,7 +83,7 @@ var app = {
 
 var route = function(r) {
 	localStorage.route = null;
-
+	alert("routing: " + r);
 	var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no');
 	ref.addEventListener('loadstart', function(event) {
 		alert("hey");
