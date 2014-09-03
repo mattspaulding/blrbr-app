@@ -103,6 +103,9 @@ var route = function(r) {
 			window.location = "create.html?" + event.url.split('?')[1];
 		}
 
+alert("url: "+event.url);
+alert("segs2: "+segs[2]);
+alert("segs3: "+segs[3]);
 		var segs = event.url.split("/");
 		if (segs[3] == "") {
 			ref.close();
