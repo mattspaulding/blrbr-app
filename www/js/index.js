@@ -65,6 +65,8 @@ var route = function(r) {
 	ref.addEventListener('loadstart', function(event) {
 		//navigator.notification.activityStart("Please Wait", "Its loading....");
 		//alert('refurl: ' + event.url);
+		$('#createPage').hide();
+		$('#homePage').hide();
 		$('#loadingPage').show();
 
 		if (event.url.indexOf('Blrb/Create') != -1) {
@@ -97,7 +99,6 @@ var route = function(r) {
 	});
 
 	ref.addEventListener('loadstop', function(event) {
-		alert("loaded");
 		ref.show();
 		//navigator.notification.activityStop();
 	});
