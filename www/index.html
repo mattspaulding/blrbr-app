@@ -32,7 +32,7 @@ under the License.
 		<div id="homePage" style="text-align: center;">
 			<br>
 			<br>
-			<img src="img/blrbrfish_logo_nobubble.png"/>
+			<img src="img/blrbrfish_logo_nobubble.png" width="90%"/>
 			<br>
 			<br>
 			<br>
@@ -102,7 +102,7 @@ under the License.
 		</div>
 
 		<div id="loadingPage">
-			<img src='img/features_background.png' width="100%"/>
+			<img src='img/features_background.png'/>
 			<p>
 				loading....
 			</p>
@@ -338,7 +338,8 @@ under the License.
 				var params = new Object();
 				params.channel = window.channel;
 				params.text = $("#text_textarea").val();
-				params.username = window.username;
+				//params.username = window.username;
+				params.username = localStorage.username;
 				alert("username"+params.username);
 				params.isTweet = $('#twitter-toggle').prop('checked');
 				debugger;
