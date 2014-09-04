@@ -76,13 +76,9 @@ var route = function(r) {
 			$('#createPage').show();
 			alert(event.url);
 			alert(event.url.split('?')[1]);
-			var param=event.url.split('?')[1];
-			var params=param.split(/[=&]/);
-			alert("0 "+ params[0]);
-			alert("1 "+ params[1]);
-			alert("2 "+ params[2]);
-			alert("3 "+ params[3]);
-			localStorage.username = event.url.split('?')[1];
+			var params=event.url.split('?')[1].split(/[=&]/);
+			localStorage.username = params[1];
+			localStorage.channel = params[3];
 			//window.open('create.html?' + event.url.split('?')[1], '_self');
 			ref.close();
 

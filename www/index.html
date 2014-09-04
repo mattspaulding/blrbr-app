@@ -336,7 +336,8 @@ under the License.
 				}
 
 				var params = new Object();
-				params.channel = window.channel;
+				//params.channel = window.channel;
+				params.channel = localStorage.channel;
 				params.text = $("#text_textarea").val();
 				//params.username = window.username;
 				params.username = localStorage.username;
