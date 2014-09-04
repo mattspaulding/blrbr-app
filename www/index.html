@@ -102,6 +102,7 @@ under the License.
 
 		<div id="loadingPage">
 			loading....
+			<img src='img/loading.gif' width="90%"/>
 		</div>
 
 		<script type="text/javascript" src="cordova.js"></script>
@@ -348,13 +349,13 @@ under the License.
 				//alert("Code = " + r.responseCode);
 				//alert("Response = " + r.response);
 				//app.initialize();
-				window.location = "index.html";
-			}
+				route('blrb/me');
+				}
 
 			function fail(error) {
 				//alert("blrb error: " + error.code);
-				window.location = "index.html";
-			}
+			route('blrb/me');
+					}
 
 		</script>
 		<script type="text/javascript">
