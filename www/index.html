@@ -309,7 +309,8 @@ under the License.
 
 			}
 
-			function uploadVoice() { debugger;
+			function uploadVoice() { 
+				debugger;
 				var audioURI = "mnt/sdcard/recording.amr";
 
 				var options = new FileUploadOptions();
@@ -338,6 +339,7 @@ under the License.
 				params.channel = window.channel;
 				params.text = $("#text_textarea").val();
 				params.username = window.username;
+				alert("username"+params.username);
 				params.isTweet = $('#twitter-toggle').prop('checked');
 				debugger;
 				options.params = params;
@@ -363,6 +365,7 @@ under the License.
 
 			function fail(error) {
 				alert("blrb error: " + error.code);
+				alert("blrb error: " + error.message);
 				route('blrb/me');
 			}
 
