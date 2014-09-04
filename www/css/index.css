@@ -24,7 +24,7 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#FFFFFF;
+    background-color:#78D0E8;
     //background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     //background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     //background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
@@ -105,16 +105,19 @@ h1 {
     //background-color:#4B946A;
     display:none;
     text-align:center;
+    position:absolute;
+    bottom:0px;
+    width:100%;
 }
 
 .full-width-button {
     background-color:#78D0E8;
     font-size:xx-large;
-    height:80px;
-   margin-top:15px;
+    height:100px;
+  
 }
 .full-width-button div {
-   padding-top:15px;
+   padding-top:30px;
 }
 
 @keyframes fade {
