@@ -74,7 +74,9 @@ var route = function(r) {
 			$('#loadingPage').hide();
 			$('#homePage').hide();
 			$('#createPage').show();
-			localStorage.stuff = event.url.split('?')[1];
+			alert(event.url);
+			alert(event.url.split('?')[1]);
+			localStorage.username = event.url.split('?')[1];
 			//window.open('create.html?' + event.url.split('?')[1], '_self');
 			ref.close();
 
