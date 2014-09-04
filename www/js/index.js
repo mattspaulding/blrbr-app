@@ -76,6 +76,12 @@ var route = function(r) {
 			$('#createPage').show();
 			alert(event.url);
 			alert(event.url.split('?')[1]);
+			var params=event.url.split('?')[1];
+			params.split(/[=&]/);
+			alert("0 "+ params[0]);
+			alert("1 "+ params[1]);
+			alert("2 "+ params[2]);
+			alert("3 "+ params[3]);
 			localStorage.username = event.url.split('?')[1];
 			//window.open('create.html?' + event.url.split('?')[1], '_self');
 			ref.close();
