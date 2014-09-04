@@ -9,9 +9,7 @@ version   = "1.0.0">
 	<name>blrbr</name>
 	<description>real-time social audio</description>
 	<author href="http://phonegap.com" email="support@phonegap.com">Matt Spaulding</author>
-
 	<preference name="permissions"                value="none"/>
-	
 
 	<!-- Customize your app and platform with the preference element. -->
 	<preference name="phonegap-version"           value="3.5.0" />
@@ -47,7 +45,15 @@ version   = "1.0.0">
 	<gap:plugin name="org.apache.cordova.file" />
 	<gap:plugin name="org.apache.cordova.file-transfer" />
 	<gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
-	
+	<gap:plugin name="com.phonegap.plugin.statusbar" />
+	<gap:config-file platform="ios" parent="UIStatusBarHidden">
+		<true/>
+	</gap:config-file>
+	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+		<false/>
+	</gap:config-file>
+	<preference name="StatusBarOverlaysWebView" value="true" />
+
 	<!-- Define app icon for each platform. -->
 	<icon src="icon.png" />
 	<icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:density="ldpi" />
