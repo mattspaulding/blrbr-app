@@ -20,8 +20,9 @@
 var app = {
 	// Application Constructor
 	initialize : function() {
-			$('#createPage').hide();
-		
+		$('#createPage').hide();
+		$('#loadingPage').hide();
+
 		this.bindEvents();
 		//debugger;
 		// var ro = localStorage.route;
@@ -60,13 +61,14 @@ var app = {
 };
 
 var route = function(r) {
-	//alert("route: "+r);
 	ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no,hidden=yes');
 	ref.addEventListener('loadstart', function(event) {
 		//navigator.notification.activityStart("Please Wait", "Its loading....");
 		//alert('refurl: ' + event.url);
+		$('#loadingPage').show();
 
 		if (event.url.indexOf('Blrb/Create') != -1) {
+			$('#loadingPage').hide();
 			$('#homePage').hide();
 			$('#createPage').show();
 			localStorage.stuff = event.url.split('?')[1];
@@ -75,6 +77,7 @@ var route = function(r) {
 
 		}
 		if (event.url == "http://blrbrdev.azurewebsites.net/") {
+			$('#loadingPage').hide();
 			$('#createPage').hide();
 			$('#homePage').show();
 			ref.close();
@@ -94,6 +97,7 @@ var route = function(r) {
 	});
 
 	ref.addEventListener('loadstop', function(event) {
+		alert("loaded");
 		ref.show();
 		//navigator.notification.activityStop();
 	});
