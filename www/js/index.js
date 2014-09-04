@@ -46,6 +46,7 @@ var app = {
 	// function, we must explicity call 'app.receivedEvent(...);'
 	onDeviceReady : function() {
 		app.receivedEvent('deviceready');
+		StatusBar.overlaysWebView(false);
 	},
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
