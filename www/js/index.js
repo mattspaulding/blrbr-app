@@ -20,7 +20,7 @@
 var app = {
 	// Application Constructor
 	initialize : function() {
-		//$('#createPage').hide();
+		$('#createPage').hide();
 		//$('#homePage').hide();
 		$('#loadingPage').hide();
 
