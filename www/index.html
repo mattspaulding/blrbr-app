@@ -85,6 +85,9 @@ under the License.
 			<div class='row' style="position: absolute;bottom: 175px;top:100px;width:100%;margin:0px;">
 					<textarea id="text_textarea" class="input-xlarge" style="width:100%;height:100%;border:white;font-size: xx-large;"></textarea>
 			</div>
+			<div id="loading" class='row'>
+					<p>blrbn...</p>
+			</div>
 			<div class='row' style="position: absolute;bottom: 0px;width:100%;margin:0px;">
 				<div style="text-align: center; font-size: xx-large;">
 					<div id="twitterYes" style="background-color: #DB60A3 ;height:75px;" onclick="twitterToggle('no');">
@@ -182,13 +185,17 @@ under the License.
 			}
 
 function resetView(){
+	$("#recordBtn").show();
+	$("#backBtn").show();
 		$("#stopBtn").hide();
+		$("#twitterYes").show();
 				$("#playBtn").hide();
 				$("#playBtnOff").show();
 				$("#blrbBtn").hide();
 				$("#blrbBtnOff").show();
 				$("#twitterNo").hide();
-
+	$("#text_textarea").show();
+			$("loading").hide();
 };
 
 			$(document).ready(function() {
@@ -427,7 +434,10 @@ alert("playing");
 				$("#playBtn").hide();
 				$("#blrbBtn").hide();
 				$("#text_textarea").hide();
-				document.getElementById('audio_position').innerHTML = "blrbing...";
+				$("twitterYes").hide();
+				$("twitterNo").hide();
+				$("loading").show();
+				//document.getElementById('audio_position').innerHTML = "blrbing...";
 
 			}
 
