@@ -75,28 +75,29 @@ under the License.
 						<span class="glyphicon glyphicon-cloud-upload"></span>
 					</div>
 				</div>
-				<div id="blrbBtnOff" class="col-xs-6" style="background-color: lightgrey;" >
+			<div id="blrbBtnOff" class="col-xs-6" style="background-color: lightgrey;" >
 					<div>
 						<span class="glyphicon glyphicon-cloud-upload"></span>
 					</div>
 				</div>
-
+			
 			</div>
-			<div class='row' style="position: absolute;bottom: 175px;top:100px;width:100%;margin:0px;">
-				<textarea id="text_textarea" class="input-xlarge" style="width:100%;height:100%;border:white;font-size: xx-large;"></textarea>
-			</div>
-			<div id="loading" class='row'>
-				<p>
-					blrbn...
-				</p>
+			<div class='row'>
+				<div class="col-xs-12" >
+					<textarea id="text_textarea" class="input-xlarge" style="width:100%;"></textarea>
+				</div>
 			</div>
 			<div class='row' style="position: absolute;bottom: 0px;width:100%;margin:0px;">
 				<div style="text-align: center; font-size: xx-large;">
-					<div id="twitterYes" style="background-color: #DB60A3 ;height:75px;" onclick="twitterToggle('no');">
-						<img src="img/bird_blue_48.png" style="padding-top: 20px;"/>
+					<div id="twitterYes" style="background-color: #DB60A3 " onclick="twitterToggle('no');">
+						<div>
+							<span class="glyphicon glyphicon-stop"></span>
+						</div>
 					</div>
-					<div id="twitterNo" style="background-color: lightgrey;height:75px;" onclick="twitterToggle('yes');">
-						<img src="img/bird_gray_48.png" style="padding-top: 20px;"/>
+					<div id="twitterNo" style="background-color: lightgrey" onclick="twitterToggle('yes');">
+						<div>
+							<span class="glyphicon glyphicon-play"></span>
+						</div>
 					</div>
 					<!-- <div >
 					<input type="radio" name="radioGroup" value="true" id="twitter-yes" checked>
@@ -123,7 +124,7 @@ under the License.
 						<span class="glyphicon glyphicon-play"></span>
 					</div>
 				</div>
-				<div id="playBtnOff" class="col-xs-6" style="background-color: lightgrey">
+		<div id="playBtnOff" class="col-xs-6" style="background-color: lightgrey">
 					<div>
 						<span class="glyphicon glyphicon-play"></span>
 					</div>
@@ -186,22 +187,15 @@ under the License.
 				}
 			}
 
-			function resetView() {
-				$("#recordBtn").show();
-				$("#backBtn").show();
+
+			$(document).ready(function() {
 				$("#stopBtn").hide();
-				$("#twitterYes").show();
 				$("#playBtn").hide();
 				$("#playBtnOff").show();
 				$("#blrbBtn").hide();
 				$("#blrbBtnOff").show();
 				$("#twitterNo").hide();
-				$("#text_textarea").show();
-				$("#loading").hide();
-			};
 
-			$(document).ready(function() {
-				resetView();
 				try {
 					var href = decodeURIComponent(window.location.href);
 					var p = href.split('username=')[1];
@@ -226,7 +220,6 @@ under the License.
 				//validation to check if device is ready is skipped
 
 				$("#recordBtn").click(function() {
-					alert("record");
 					record();
 				});
 
@@ -236,12 +229,10 @@ under the License.
 				});
 
 				$("#playBtn").click(function() {
-					alert("play");
 					play();
 				});
 
 				$("#stopBtn").click(function() {
-					alert("stop");
 					stop();
 				});
 				$("#blrbBtn").click(function() {
@@ -254,18 +245,16 @@ under the License.
 			}
 
 			function record() {
-				alert("in record");
 				createMedia(function() {
-					alert("status recording");
 					status = "recording";
 					mediaVar.startRecord();
 					$("#recordBtn").hide();
 					$("#stopBtn").show();
 					$("#playBtn").hide();
-					$("#playBtnOff").show();
-					$("#blrbBtn").hide();
-					$("#blrbBtnOff").show();
-
+							$("#playBtnOff").show();
+		$("#blrbBtn").hide();
+	$("#blrbBtnOff").show();
+			
 					// Stop recording after 6 sec
 					var recTime = 0;
 					setAudioPosition(recTime + " sec");
@@ -283,7 +272,6 @@ under the License.
 			}
 
 			function createMedia(onMediaCreated, mediaStatusCallback) {
-				alert("createMedia");
 				if (mediaVar != null) {
 					onMediaCreated();
 					return;
@@ -292,7 +280,6 @@ under the License.
 				if ( typeof mediaStatusCallback == 'undefined')
 					mediaStatusCallback = null;
 				if (phoneCheck.ios != null) {
-					alert("ios");
 					//first create the file
 					window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSystem) {
 						// save the file system for later access
@@ -321,10 +308,9 @@ under the License.
 			}
 
 			function stop() {
-				alert("mediavar: "+mediaVar);
 				if (mediaVar == null)
 					return;
-alert("status: "+status);
+
 				if (status == 'recording') {
 					mediaVar.stopRecord();
 
@@ -338,23 +324,22 @@ alert("status: "+status);
 				$("#recordBtn").show();
 				$("#stopBtn").hide();
 				$("#playBtn").show();
-				$("#playBtnOff").hide();
-				$("#blrbBtn").show();
-				$("#blrbBtnOff").hide();
-				status = 'stopped';
+					$("#playBtnOff").hide();
+			$("#blrbBtn").show();
+			$("#blrbBtnOff").hide();
+					status = 'stopped';
 			}
 
 			function play() {
 				//playAudio("recording.amr");
-				alert("getting media");
+
 				var media = new Media(recordFileName, function() {
 					//alert( "Media Success" );
 				}, function() {
 					//alert("Media Failure, reason: " + err);
 				});
-				alert("playing");
+
 				media.play();
-				alert("done");
 			}
 
 			function onStatusChange() {
@@ -363,9 +348,9 @@ alert("status: "+status);
 					$("#recordBtn").show();
 					$("#stopBtn").hide();
 					$("#playBtn").show();
-					$("#playBtnOff").hide();
-					$("#blrbBtn").show();
-					$("#blrbBtnOff").hide();
+						$("#playBtnOff").hide();
+			$("#blrbBtn").show();
+				$("#blrbBtnOff").hide();
 				}
 			}
 
@@ -376,11 +361,11 @@ alert("status: "+status);
 			function onError(err) {
 				if ( typeof err.message != 'undefined')
 					err = err.message;
-				alert("Error : " + err.message);
+				//alert("Error : " + err.message);
 			}
 
 			function log(message) {
-				alert(message);
+				//alert(message);
 			}
 
 			function onDeviceReady() {
@@ -443,22 +428,19 @@ alert("status: "+status);
 				$("#playBtn").hide();
 				$("#blrbBtn").hide();
 				$("#text_textarea").hide();
-				$("#twitterYes").hide();
-				$("#twitterNo").hide();
-				$("#loading").show();
-				//document.getElementById('audio_position').innerHTML = "blrbing...";
+				document.getElementById('audio_position').innerHTML = "blrbing...";
 
 			}
 
 			function win(r) {
-				alert("Code = " + r.responseCode);
-				alert("Response = " + r.response);
+				//alert("Code = " + r.responseCode);
+				//alert("Response = " + r.response);
 				//app.initialize();
 				route('blrb/me');
 			}
 
 			function fail(error) {
-				alert("blrb error: " + error.code);
+				//alert("blrb error: " + error.code);
 				route('blrb/me');
 			}
 
