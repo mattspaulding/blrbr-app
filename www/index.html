@@ -241,6 +241,7 @@ under the License.
 				});
 
 				$("#stopBtn").click(function() {
+					alert("stop");
 					stop();
 				});
 				$("#blrbBtn").click(function() {
@@ -320,9 +321,10 @@ under the License.
 			}
 
 			function stop() {
+				alert("mediavar: "+mediaVar);
 				if (mediaVar == null)
 					return;
-
+alert("status: "+status);
 				if (status == 'recording') {
 					mediaVar.stopRecord();
 
@@ -374,11 +376,11 @@ under the License.
 			function onError(err) {
 				if ( typeof err.message != 'undefined')
 					err = err.message;
-				//alert("Error : " + err.message);
+				alert("Error : " + err.message);
 			}
 
 			function log(message) {
-				//alert(message);
+				alert(message);
 			}
 
 			function onDeviceReady() {
