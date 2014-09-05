@@ -197,7 +197,7 @@ under the License.
 				$("#blrbBtnOff").show();
 				$("#twitterNo").hide();
 				$("#text_textarea").show();
-				$("#text_textarea").val="";
+				$("#text_textarea").val('');
 				$("#loading").hide();
 			};
 
@@ -402,6 +402,7 @@ under the License.
 			}
 
 			function uploadVoice() { debugger;
+				alert("upload");
 				var audioURI = "mnt/sdcard/recording.amr";
 
 				var options = new FileUploadOptions();
@@ -410,7 +411,7 @@ under the License.
 				options.mimeType = "audio/amr";
 
 				if (phoneCheck.ios != null) {
-
+alert("ios");
 					//	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
 					//		var directoryReader = fs.root.createReader();
 					//		directoryReader.readEntries(function(entries) {
@@ -428,11 +429,12 @@ under the License.
 
 				var params = new Object();
 				//params.channel = window.channel;
-				params.channel ="";// localStorage.channel;
+				params.channel = localStorage.channel;
 				params.text = $("#text_textarea").val();
 				//params.username = window.username;
-				params.username ="";// localStorage.username;
+				params.username =localStorage.username;
 				params.isTweet = isTweet;
+				alert(params.username+params.channel+params.isTweet+params.text);
 				options.params = params;
 				var ft = new FileTransfer();
 				//ft.upload(audioURI, "http://blrbr.co/Blrb/UploadAudio", win, fail, options);
