@@ -21,7 +21,7 @@ var app = {
 	// Application Constructor
 	initialize : function() {
 		//$('#createPage').hide();
-		$('#homePage').hide();
+		//$('#homePage').hide();
 		$('#loadingPage').hide();
 
 		this.bindEvents();
