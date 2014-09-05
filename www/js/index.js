@@ -20,9 +20,9 @@
 var app = {
 	// Application Constructor
 	initialize : function() {
-		$('#createPage').hide();
+		//$('#createPage').hide();
 		//$('#homePage').hide();
-		$('#loadingPage').hide();
+		//$('#loadingPage').hide();
 
 		this.bindEvents();
 		//debugger;
@@ -82,7 +82,7 @@ var route = function(r) {
 			resetView();
 			//window.open('create.html?' + event.url.split('?')[1], '_self');
 			ref.close();
-
+app.initialize();
 		}
 		if (event.url == "http://blrbrdev.azurewebsites.net/") {
 			$('#loadingPage').hide();
