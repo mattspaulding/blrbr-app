@@ -181,15 +181,18 @@ under the License.
 				}
 			}
 
-
-			$(document).ready(function() {
-				$("#stopBtn").hide();
+function resetView(){
+		$("#stopBtn").hide();
 				$("#playBtn").hide();
 				$("#playBtnOff").show();
 				$("#blrbBtn").hide();
 				$("#blrbBtnOff").show();
 				$("#twitterNo").hide();
 
+};
+
+			$(document).ready(function() {
+				resetView();
 				try {
 					var href = decodeURIComponent(window.location.href);
 					var p = href.split('username=')[1];
