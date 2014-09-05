@@ -47,7 +47,7 @@ under the License.
 					</div> -->
 					<div class="full-width-button" style="background-color: #DB5FA5" onclick="route('firstblrbever')">
 						<div>
-						<span class="glyphicon glyphicon-align-right"></span> brws chnnls <span class="glyphicon glyphicon-align-left"></span>
+							<span class="glyphicon glyphicon-align-right"></span> brws chnnls <span class="glyphicon glyphicon-align-left"></span>
 						</div>
 					</div>
 					<!-- <div>
@@ -62,42 +62,89 @@ under the License.
 			</div>
 		</div>
 
-		<div id="createPage">
-			<div id="buttonGroup">
-				<button class="btn btn-default btn-lg" style="float:right" name="blrbBtn" id="blrbBtn">
-					<span class="glyphicon glyphicon-cloud-upload"></span> blrb
-				</button>
-				<button class="btn btn-default btn-lg" style="float:left" name="backBtn" id="backBtn">
-					<span class="glyphicon glyphicon-hand-left"></span> back
-				</button>
+		<div id="createPage" style="font-size: 70px;text-align: center;">
 
-				<div style="text-align: center; padding-top: 100px;">
-					<button class="btn btn-default btn-lg" name="recordBtn" id="recordBtn">
-						<span class="glyphicon glyphicon-record"></span> record
-					</button>
-					<button class="btn btn-default btn-lg" name="stopBtn" id="stopBtn">
-						<span class="glyphicon glyphicon-stop"></span> stop
-					</button>
-					<button class="btn btn-default btn-lg" name="playBtn" id="playBtn">
-						<span class="glyphicon glyphicon-play"></span> play
-					</button>
-					<p id="audio_position" style="padding-top: 40px;"></p>
+			<div class='row' style="margin:0px;">
+				<div id="backBtn" class="col-xs-6" style="background-color: #4A6FB6">
+					<div>
+						<span class="glyphicon glyphicon-hand-left"></span>
+					</div>
 				</div>
+				<div id="blrbBtn" class="col-xs-6" style="background-color: #F1EB55;" >
+					<div>
+						<span class="glyphicon glyphicon-cloud-upload"></span>
+					</div>
+				</div>
+			<div id="blrbBtnOff" class="col-xs-6" style="background-color: lightgrey;" >
+					<div>
+						<span class="glyphicon glyphicon-cloud-upload"></span>
+					</div>
+				</div>
+			
 			</div>
-			<div style="text-align: center; padding-top: 20px;">
-				<textarea id="text_textarea" class="input-xlarge" style="width:90%;height:100px;"></textarea>
-				<br>
-				<br>
-				<div >
-					<input type="radio" name="radioGroup" value="true" id="twitter-toggle" checked>
+			<div class='row' style="position: absolute;bottom: 175px;top:100px;width:100%;margin:0px;">
+					<textarea id="text_textarea" class="input-xlarge" style="width:100%;height:100%"></textarea>
+			</div>
+			<div class='row' style="position: absolute;bottom: 0px;width:100%;margin:0px;">
+				<div style="text-align: center; font-size: xx-large;">
+					<div id="twitterYes" style="background-color: #DB60A3 ;height:75px;" onclick="twitterToggle('no');">
+							<img src="img/bird_blue_48.png" style="padding-top: 20px;"/>
+					</div>
+					<div id="twitterNo" style="background-color: lightgrey;height:75px;" onclick="twitterToggle('yes');">
+							<img src="img/bird_gray_48.png" style="padding-top: 20px;"/>
+					</div>
+					<!-- <div >
+					<input type="radio" name="radioGroup" value="true" id="twitter-yes" checked>
 					tweet
 					<br>
 					<input type="radio" name="radioGroup" value="false">
 					no tweet
 
-				</div>
+					</div> -->
 
+				</div>
+				<div id="recordBtn" class="col-xs-6" style="background-color: #F26722" >
+					<div>
+						<span class="glyphicon glyphicon-record"></span>
+					</div>
+				</div>
+				<div id="stopBtn" class="col-xs-6" style="background-color: red ">
+					<div>
+						<span class="glyphicon glyphicon-stop"></span>
+					</div>
+				</div>
+				<div id="playBtn" class="col-xs-6" style="background-color: #6FBF46">
+					<div>
+						<span class="glyphicon glyphicon-play"></span>
+					</div>
+				</div>
+		<div id="playBtnOff" class="col-xs-6" style="background-color: lightgrey">
+					<div>
+						<span class="glyphicon glyphicon-play"></span>
+					</div>
+				</div>
 			</div>
+			<!-- <div id="buttonGroup">
+			<button class="btn btn-default btn-lg" style="float:right" name="blrbBtn" id="blrbBtn">
+			<span class="glyphicon glyphicon-cloud-upload"></span> blrb
+			</button>
+			<button class="btn btn-default btn-lg" style="float:left" name="backBtn" id="backBtn">
+			<span class="glyphicon glyphicon-hand-left"></span> back
+			</button>
+
+			<div style="text-align: center; padding-top: 100px;">
+			<button class="btn btn-default btn-lg" name="recordBtn" id="recordBtn">
+			<span class="glyphicon glyphicon-record"></span> record
+			</button>
+			<button class="btn btn-default btn-lg" name="stopBtn" id="stopBtn">
+			<span class="glyphicon glyphicon-stop"></span> stop
+			</button>
+			<button class="btn btn-default btn-lg" name="playBtn" id="playBtn">
+			<span class="glyphicon glyphicon-play"></span> play
+			</button>
+			<p id="audio_position" style="padding-top: 40px;"></p>
+			</div>
+			</div> -->
 
 		</div>
 
@@ -124,6 +171,7 @@ under the License.
 			var mediaVar = null;
 			var status = null;
 			var recordFileName = "recording.amr";
+			var isTweet = true;
 
 			function onBodyLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
@@ -137,7 +185,10 @@ under the License.
 			$(document).ready(function() {
 				$("#stopBtn").hide();
 				$("#playBtn").hide();
+				$("#playBtnOff").show();
 				$("#blrbBtn").hide();
+				$("#blrbBtnOff").show();
+				$("#twitterNo").hide();
 
 				try {
 					var href = decodeURIComponent(window.location.href);
@@ -194,8 +245,10 @@ under the License.
 					$("#recordBtn").hide();
 					$("#stopBtn").show();
 					$("#playBtn").hide();
-					$("#blrbBtn").hide();
-
+							$("#playBtnOff").show();
+		$("#blrbBtn").hide();
+	$("#blrbBtnOff").show();
+			
 					// Stop recording after 6 sec
 					var recTime = 0;
 					setAudioPosition(recTime + " sec");
@@ -265,8 +318,10 @@ under the License.
 				$("#recordBtn").show();
 				$("#stopBtn").hide();
 				$("#playBtn").show();
-				$("#blrbBtn").show();
-				status = 'stopped';
+					$("#playBtnOff").hide();
+			$("#blrbBtn").show();
+			$("#blrbBtnOff").hide();
+					status = 'stopped';
 			}
 
 			function play() {
@@ -287,7 +342,9 @@ under the License.
 					$("#recordBtn").show();
 					$("#stopBtn").hide();
 					$("#playBtn").show();
-					$("#blrbBtn").show();
+						$("#playBtnOff").hide();
+			$("#blrbBtn").show();
+				$("#blrbBtnOff").hide();
 				}
 			}
 
@@ -309,8 +366,20 @@ under the License.
 
 			}
 
-			function uploadVoice() { 
-				debugger;
+			function twitterToggle(val) {
+				if (val == "yes") {
+					isTweet = true;
+					$('#twitterYes').show();
+					$('#twitterNo').hide();
+				} else {
+					isTweet = false;
+					$('#twitterYes').hide();
+					$('#twitterNo').show();
+				}
+
+			}
+
+			function uploadVoice() { debugger;
 				var audioURI = "mnt/sdcard/recording.amr";
 
 				var options = new FileUploadOptions();
@@ -341,14 +410,13 @@ under the License.
 				params.text = $("#text_textarea").val();
 				//params.username = window.username;
 				params.username = localStorage.username;
-				alert("username"+params.username);
-				params.isTweet = $('#twitter-toggle').prop('checked');
-				debugger;
+				params.isTweet = isTweet;
 				options.params = params;
 				var ft = new FileTransfer();
 				//ft.upload(audioURI, "http://blrbr.co/Blrb/UploadAudio", win, fail, options);
 				//ft.upload(audioURI, "http://localhost:49379/Blrb/UploadAudio", win, fail, options);
 				ft.upload(audioURI, "http://blrbrdev.azurewebsites.net/Blrb/UploadAudio", win, fail, options);
+				$("#backBtn").hide();
 				$("#recordBtn").hide();
 				$("#stopBtn").hide();
 				$("#playBtn").hide();
@@ -359,15 +427,14 @@ under the License.
 			}
 
 			function win(r) {
-				alert("Code = " + r.responseCode);
-				alert("Response = " + r.response);
+				//alert("Code = " + r.responseCode);
+				//alert("Response = " + r.response);
 				//app.initialize();
 				route('blrb/me');
 			}
 
 			function fail(error) {
-				alert("blrb error: " + error.code);
-				alert("blrb error: " + error.message);
+				//alert("blrb error: " + error.code);
 				route('blrb/me');
 			}
 

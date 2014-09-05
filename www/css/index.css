@@ -114,10 +114,13 @@ h1 {
     background-color:#78D0E8;
     font-size:xx-large;
     height:100px;
-  
+  text-align:center;
 }
 .full-width-button div {
    padding-top:30px;
+}
+#createPage span{
+	vertical-align:middle;
 }
 
 @keyframes fade {

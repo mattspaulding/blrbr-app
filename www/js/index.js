@@ -20,7 +20,8 @@
 var app = {
 	// Application Constructor
 	initialize : function() {
-		$('#createPage').hide();
+		//$('#createPage').hide();
+		$('#homePage').hide();
 		$('#loadingPage').hide();
 
 		this.bindEvents();
@@ -74,8 +75,6 @@ var route = function(r) {
 			$('#loadingPage').hide();
 			$('#homePage').hide();
 			$('#createPage').show();
-			alert(event.url);
-			alert(event.url.split('?')[1]);
 			var params=event.url.split('?')[1].split(/[=&]/);
 			localStorage.username = params[1];
 			localStorage.channel = params[3];
