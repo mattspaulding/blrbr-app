@@ -63,7 +63,7 @@ var app = {
 };
 
 var route = function(r) {
-	ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no,hidden=yes');
+	var ref = window.open('http://blrbrdev.azurewebsites.net/' + r, '_blank', 'toolbar=no,location=no,hidden=yes');
 	ref.addEventListener('loadstart', function(event) {
 		//navigator.notification.activityStart("Please Wait", "Its loading....");
 		//alert('refurl: ' + event.url);
