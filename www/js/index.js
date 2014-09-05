@@ -78,7 +78,6 @@ var route = function(r) {
 			var params=event.url.split('?')[1].split(/[=&]/);
 			localStorage.username = params[1];
 			localStorage.channel = params[3];
-			resetView();
 			//window.open('create.html?' + event.url.split('?')[1], '_self');
 			ref.close();
 
