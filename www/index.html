@@ -223,6 +223,7 @@ under the License.
 				});
 
 				$("#playBtn").click(function() {
+					alert("play");
 					play();
 				});
 
@@ -326,14 +327,15 @@ under the License.
 
 			function play() {
 				//playAudio("recording.amr");
-
+alert("getting media");
 				var media = new Media(recordFileName, function() {
 					//alert( "Media Success" );
 				}, function() {
 					//alert("Media Failure, reason: " + err);
 				});
-
+alert("playing");
 				media.play();
+				alert("done");
 			}
 
 			function onStatusChange() {
